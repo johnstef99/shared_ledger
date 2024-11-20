@@ -1,0 +1,123 @@
+{
+  "login_view": {
+    "email_label": "Email",
+    "password_label": "Κωδικός πρόσβασης",
+    "token_label": "Κωδικός",
+    "login_btn": "Σύνδεση",
+    "magic_login_btn": "Μαγική Σύνδεση",
+    "login_type": {
+      "password": "Σύνδεση με Κωδικό",
+      "magic": "Μαγική Σύνδεση"
+    },
+    "back_btn": "Πίσω",
+    "code_sent_msg": "Ο μαγικός κωδικός στάλθηκε στο email {}"
+  },
+  "ledgers_view": {
+    "appbar_title": "Βιβλία",
+    "my_ledgers": "Τα Βιβλία μου",
+    "shared_with_me": "Κοινόχρηστα Βιβλία",
+    "no_ledgers_msg": "Δεν βρέθηκαν βιβλία"
+  },
+  "settings_view": {
+    "appbar_title": "Ρυθμίσεις",
+    "change_password_btn": "Αλλαγή Κωδικού",
+    "change_language_btn": "Αλλαγή Γλώσσας",
+    "logout_btn": "Αποσύνδεση"
+  },
+  "change_password_view": {
+    "appbar_title": "Αλλαγή Κωδικού",
+    "new_password_label": "Νέος Κωδικός",
+    "confirm_password_label": "Επιβεβαίωση Κωδικού",
+    "password_changed_msg": "Ο κωδικός άλλαξε με επιτυχία!",
+    "submit_btn": "Αποθήκευση"
+  },
+  "transactions_view": {
+    "no_transactions_msg": "Δεν βρέθηκαν συναλλαγές",
+    "sort_by": {
+      "transaction_at_asc": "Ημερομηνία συναλλαγής (Αύξουσα)",
+      "transaction_at_desc": "Ημερομηνία συναλλαγής (Φθίνουσα)",
+      "created_at_asc": "Ημερομηνία δημιουργίας (Αύξουσα)",
+      "created_at_desc": "Ημερομηνία δημιουργίας (Φθίνουσα)"
+    }
+  },
+  "contacts_view": {
+    "appbar_title": "Επαφές",
+    "no_contacts_msg": "Δεν βρέθηκαν επαφές"
+  },
+  "contact_create_or_edit_view": {
+    "appbar_title": {
+      "create": "Δημιουργία Επαφής",
+      "edit": "Επεξεργασία Επαφής"
+    },
+    "email_label": "@:input_labels.email",
+    "name_label": "@:input_labels.name",
+    "phone_number_label": "@:input_labels.phone_number",
+    "save_btn": {
+      "create": "Δημιουργία",
+      "edit": "Ενημέρωση"
+    }
+  },
+  "transaction_create_or_edit_view": {
+    "appbar_title": {
+      "create": "Δημιουργία Συναλλαγής",
+      "edit": "Επεξεργασία Συναλλαγής"
+    },
+    "amount_label": "Ποσό",
+    "comment_label": "Σχόλιο",
+    "date_label": "Ημερομηνία συναλλαγής",
+    "save_btn": {
+      "create": "Δημιουργία",
+      "edit": "Ενημέρωση"
+    },
+    "income": "Έσοδο",
+    "expense": "Έξοδο"
+  },
+  "ledger_create_or_edit_view": {
+    "appbar_title": {
+      "create": "Δημιουργία Βιβλίου",
+      "edit": "Επεξεργασία Βιβλίου"
+    },
+    "name_label": "Όνομα",
+    "description_label": "Περιγραφή",
+    "save_btn": {
+      "create": "Δημιουργία",
+      "edit": "Ενημέρωση"
+    }
+  },
+  "generic_error_msg": "Κάτι πήγε στραβά!",
+  "error_msg": {
+    "invalid_email": "Μη έγκυρο email",
+    "invalid_password": "Μη έγκυρος κωδικός",
+    "invalid_token": "Μη έγκυρος κωδικός",
+    "password_mismatch": "Οι κωδικοί δεν ταιριάζουν",
+    "required": "Υποχρεωτικό πεδίο"
+  },
+  "input_labels": {
+    "email": "Email",
+    "password": "Κωδικός πρόσβασης",
+    "new_password": "Νέος Κωδικός",
+    "confirm_password": "Επιβεβαίωση Κωδικού",
+    "name": "Όνομα",
+    "phone_number": "Τηλεφωνικός Αριθμός"
+  },
+  "locales": {
+    "en": "English",
+    "el": "Ελληνικά"
+  },
+  "bottom_nav": {
+    "ledgers": "Βιβλία",
+    "contacts": "Επαφές",
+    "settings": "Ρυθμίσεις"
+  },
+  "edit": "Επεξεργασία",
+  "delete": "Διαγραφή",
+  "contact": {
+    "one": "Επαφή",
+    "other": "Επαφές"
+  },
+  "deleted_contact": "Διαγραμμένη επαφή",
+  "select_language": "Επιλογή Γλώσσας",
+  "total_incomes": "Έσοδα",
+  "total_expenses": "Έξοδα",
+  "total_amount": "Σύνολο"
+}

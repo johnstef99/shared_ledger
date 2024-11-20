@@ -1,0 +1,123 @@
+{
+  "login_view": {
+    "email_label": "Email",
+    "password_label": "Password",
+    "token_label": "Code",
+    "login_btn": "Login",
+    "magic_login_btn": "Magic Login",
+    "login_type": {
+      "password": "Password Login",
+      "magic": "Magic Login"
+    },
+    "back_btn": "Back",
+    "code_sent_msg": "Magic code sent to email {}"
+  },
+  "ledgers_view": {
+    "appbar_title": "Ledgers",
+    "my_ledgers": "My Ledgers",
+    "shared_with_me": "Shared with me",
+    "no_ledgers_msg": "No ledgers found"
+  },
+  "settings_view": {
+    "appbar_title": "Settings",
+    "change_password_btn": "Change Password",
+    "change_language_btn": "Change Language",
+    "logout_btn": "Logout"
+  },
+  "change_password_view": {
+    "appbar_title": "Change Password",
+    "new_password_label": "New Password",
+    "confirm_password_label": "Confirm Password",
+    "password_changed_msg": "Password changed successfully!",
+    "submit_btn": "Save"
+  },
+  "transactions_view": {
+    "no_transactions_msg": "No transactions found",
+    "sort_by": {
+      "transaction_at_asc": "Transaction Date (Ascending)",
+      "transaction_at_desc": "Transaction Date (Descending)",
+      "created_at_asc": "Created Date (Ascending)",
+      "created_at_desc": "Created Date (Descending)"
+    }
+  },
+  "contacts_view": {
+    "appbar_title": "Contacts",
+    "no_contacts_msg": "No contacts found"
+  },
+  "contact_create_or_edit_view": {
+    "appbar_title": {
+      "create": "Create Contact",
+      "edit": "Edit Contact"
+    },
+    "email_label": "@:input_labels.email",
+    "name_label": "@:input_labels.name",
+    "phone_number_label": "@:input_labels.phone_number",
+    "save_btn": {
+      "create": "Create",
+      "edit": "Update"
+    }
+  },
+  "transaction_create_or_edit_view": {
+    "appbar_title": {
+      "create": "Create Transaction",
+      "edit": "Edit Transaction"
+    },
+    "amount_label": "Amount",
+    "comment_label": "Comment",
+    "date_label": "Transaction at",
+    "save_btn": {
+      "create": "Create",
+      "edit": "Update"
+    },
+    "income": "Income",
+    "expense": "Expense"
+  },
+  "ledger_create_or_edit_view": {
+    "appbar_title": {
+      "create": "Create Ledger",
+      "edit": "Edit Ledger"
+    },
+    "name_label": "Name",
+    "description_label": "Description",
+    "save_btn": {
+      "create": "Create",
+      "edit": "Update"
+    }
+  },
+  "generic_error_msg": "Something went wrong!",
+  "error_msg": {
+    "invalid_email": "Invalid email",
+    "invalid_password": "Invalid password",
+    "invalid_token": "Invalid code",
+    "password_mismatch": "Passwords do not match",
+    "required": "Required"
+  },
+  "input_labels": {
+    "email": "Email",
+    "password": "Password",
+    "new_password": "New Password",
+    "confirm_password": "Confirm Password",
+    "name": "Name",
+    "phone_number": "Phone Number"
+  },
+  "locales": {
+    "en": "English",
+    "el": "Ελληνικά"
+  },
+  "bottom_nav": {
+    "ledgers": "Ledgers",
+    "contacts": "Contacts",
+    "settings": "Settings"
+  },
+  "edit": "Edit",
+  "delete": "Delete",
+  "contact": {
+    "one": "Contact",
+    "other": "Contacts"
+  },
+  "deleted_contact": "Contact deleted",
+  "select_language": "Select Language",
+  "total_incomes": "Incomes",
+  "total_expenses": "Expenses",
+  "total_amount": "Total"
+}
