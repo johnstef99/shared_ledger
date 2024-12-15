@@ -57,4 +57,10 @@ class AuthService {
       supa.UserAttributes(password: password),
     );
   }
+
+  Future<void> deleteAccount() async {
+    await _supabase.rpc('delete_user').then((_) async {
+      await _supabase.auth.signOut();
+    });
+  }
 }

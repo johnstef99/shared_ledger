@@ -21,6 +21,7 @@
   "settings_view": {
     "appbar_title": "Settings",
     "change_password_btn": "Change Password",
+    "delete_account_btn": "Delete Account",
     "change_language_btn": "Change Language",
     "logout_btn": "Logout"
   },
@@ -30,6 +31,15 @@
     "confirm_password_label": "Confirm Password",
     "password_changed_msg": "Password changed successfully!",
     "submit_btn": "Save"
+  },
+  "delete_account_view": {
+    "appbar_title": "Delete Account",
+    "warning_msg": "Deleting your account is irreversible. After deletion, all your data will be lost including:\n\n- your ledgers\n- transactions you added\n- your contacts",
+    "delete_btn": "Delete",
+    "go_back_btn": "Go Back",
+    "confirm_delete_title": "Delete Account",
+    "confirm_delete_msg": "Are you sure you want to delete your account?",
+    "cancel_btn": "Cancel"
   },
   "transactions_view": {
     "no_transactions_msg": "No transactions found",

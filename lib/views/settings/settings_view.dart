@@ -49,6 +49,11 @@ class _SettingsViewState extends State<SettingsView> {
               trailing: const Icon(Icons.arrow_forward_ios),
             ),
             ListTile(
+              title: Text(tr('delete_account_btn')),
+              onTap: () => context.go('/settings/delete-account'),
+              trailing: const Icon(Icons.arrow_forward_ios),
+            ),
+            ListTile(
               title: Text(tr('logout_btn')),
               trailing: ValueListenableBuilder<bool>(
                 valueListenable: model.isLoggingOut,

@@ -21,6 +21,7 @@
   "settings_view": {
     "appbar_title": "Ρυθμίσεις",
     "change_password_btn": "Αλλαγή Κωδικού",
+    "delete_account_btn": "Διαγραφή Λογαριασμού",
     "change_language_btn": "Αλλαγή Γλώσσας",
     "logout_btn": "Αποσύνδεση"
   },
@@ -30,6 +31,15 @@
     "confirm_password_label": "Επιβεβαίωση Κωδικού",
     "password_changed_msg": "Ο κωδικός άλλαξε με επιτυχία!",
     "submit_btn": "Αποθήκευση"
+  },
+  "delete_account_view": {
+    "appbar_title": "Διαγραφή Λογαριασμού",
+    "warning_msg": "Η διαγραφή του λογαριασμού σας είναι μη αναστρέψιμη. Μετά τη διαγραφή, όλα τα δεδομένα σας θα χαθούν, συμπεριλαμβανομένων:\n\n- των βιβλίων σας\n- των συναλλαγών που προσθέσατε\n- των επαφών σας",
+    "delete_btn": "Διαγραφή",
+    "go_back_btn": "Επιστροφή",
+    "confirm_delete_title": "Διαγραφή Λογαριασμού",
+    "confirm_delete_msg": "Είστε σίγουροι ότι θέλετε να διαγράψετε τον λογαριασμό σας;",
+    "cancel_btn": "Ακύρωση"
   },
   "transactions_view": {
     "no_transactions_msg": "Δεν βρέθηκαν συναλλαγές",

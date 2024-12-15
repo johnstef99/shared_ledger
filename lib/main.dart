@@ -18,6 +18,7 @@ import 'package:shared_ledger/views/login/login_view.dart';
 import 'package:shared_ledger/services/auth_service.dart';
 import 'package:shared_ledger/supabase.dart';
 import 'package:shared_ledger/views/settings/change_password_view.dart';
+import 'package:shared_ledger/views/settings/delete_account_view.dart';
 import 'package:shared_ledger/views/settings/settings_view.dart';
 import 'package:shared_ledger/views/transactions/transactions_view.dart';
 import 'package:shared_ledger/views/transactions/transaction_create_or_edit/transaction_create_or_edit_view.dart';
@@ -262,6 +263,10 @@ GoRouter getDefaultRouter() => GoRouter(
                     GoRoute(
                       path: '/change-password',
                       builder: (context, state) => const ChangePasswordView(),
+                    ),
+                    GoRoute(
+                      path: '/delete-account',
+                      builder: (context, state) => const DeleteAccountView(),
                     ),
                   ],
                 ),
