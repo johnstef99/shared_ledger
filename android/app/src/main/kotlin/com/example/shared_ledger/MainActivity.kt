@@ -1,4 +1,4 @@
-package com.example.shared_ledger
+package com.johnstef.shared_ledger
 
 import io.flutter.embedding.android.FlutterActivity
 
