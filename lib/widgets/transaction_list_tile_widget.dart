@@ -43,10 +43,26 @@ class TransactionListTile extends StatelessWidget {
             color: transaction.contact == null ? Colors.grey : Colors.black,
           ),
         ),
-        subtitle: Text(
-          DateFormat('d MMM yyyy HH:mm', context.locale.toLanguageTag()).format(
-            transaction.transactionAt.toLocal(),
-          ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              DateFormat('d MMM yyyy HH:mm', context.locale.toLanguageTag())
+                  .format(
+                transaction.transactionAt.toLocal(),
+              ),
+            ),
+            if (transaction.comment != null)
+              Text(
+                transaction.comment!,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: Colors.grey.shade800,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+          ],
         ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,

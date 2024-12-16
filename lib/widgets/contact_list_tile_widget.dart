@@ -38,8 +38,20 @@ class ContactListTile extends StatelessWidget {
         key: ValueKey(contact.id),
         title: Text(contact.displayName),
         onTap: onTap,
-        subtitle:
-            contact.phoneNumber == null ? null : Text(contact.phoneNumber!),
+        subtitle: Column(
+          children: [
+            (contact.phoneNumber ?? '-', Icons.phone_outlined),
+            (contact.email ?? '-', Icons.email_outlined)
+          ]
+              .map((i) => Row(
+                    children: [
+                      Icon(i.$2, size: 18),
+                      SizedBox(width: 8),
+                      Text(i.$1),
+                    ],
+                  ))
+              .toList(),
+        ),
         trailing: actions.isEmpty
             ? null
             : PopupMenuButton(
