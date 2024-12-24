@@ -129,5 +129,8 @@
   "select_language": "Επιλογή Γλώσσας",
   "total_incomes": "Έσοδα",
   "total_expenses": "Έξοδα",
-  "total_amount": "Σύνολο"
+  "total_amount": "Σύνολο",
+  "balance": "Υπόλοιπο",
+  "payments": "Πληρωμές",
+  "charges": "Χρεώσεις"
 }
