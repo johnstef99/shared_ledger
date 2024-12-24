@@ -24,7 +24,7 @@ class TransactionCreateOrEditViewModel {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  ValueNotifier<bool> isIncome = ValueNotifier(false);
+  ValueNotifier<bool> isIncome = ValueNotifier(true);
 
   ValueNotifier<DateTime> dateTime = ValueNotifier(DateTime.now());
 

@@ -32,7 +32,7 @@ class TransactionListTile extends StatelessWidget {
     ];
 
     return Tooltip(
-      triggerMode: TooltipTriggerMode.tap,
+      triggerMode: TooltipTriggerMode.longPress,
       message: transaction.comment ?? '',
       child: Card(
         clipBehavior: Clip.antiAlias,
@@ -71,7 +71,7 @@ class TransactionListTile extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                transaction.amount.toCurrency(context.locale),
+                transaction.amount.abs().toCurrency(context.locale),
                 style: TextStyle(
                   color: switch (transaction.amount) {
                     > 0 => Colors.green,

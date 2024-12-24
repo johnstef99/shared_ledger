@@ -79,8 +79,8 @@
       "create": "Δημιουργία",
       "edit": "Ενημέρωση"
     },
-    "income": "Έσοδο",
-    "expense": "Έξοδο"
+    "income": "Πληρωμή",
+    "expense": "Οφειλή"
   },
   "ledger_create_or_edit_view": {
     "appbar_title": {
@@ -132,5 +132,6 @@
   "total_amount": "Σύνολο",
   "balance": "Υπόλοιπο",
   "payments": "Πληρωμές",
-  "charges": "Χρεώσεις"
+  "charges": "Οφειλές",
+  "surplus": "Πλεόνασμα"
 }

@@ -122,12 +122,12 @@ class _TransactionCreateOrEditViewState
                                   },
                                   segments: [
                                     ButtonSegment(
-                                      value: false,
-                                      label: Text(tr('expense')),
-                                    ),
-                                    ButtonSegment(
                                       value: true,
                                       label: Text(tr('income')),
+                                    ),
+                                    ButtonSegment(
+                                      value: false,
+                                      label: Text(tr('expense')),
                                     ),
                                   ],
                                 ),

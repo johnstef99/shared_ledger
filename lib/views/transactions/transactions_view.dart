@@ -149,7 +149,6 @@ class _TotalAmount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = ViewModelProvider.of<TransactionsViewModel>(context);
-    final isShared = model.ledger.isShared;
 
     return ValueListenableBuilder(
       valueListenable: model.transactionsListNotifier,
@@ -172,17 +171,11 @@ class _TotalAmount extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: (isShared
-                    ? {
-                        tr('payments'): totalIncomes,
-                        tr('charges'): totalExpenses,
-                        tr('balance'): total,
-                      }
-                    : {
-                        tr('total_incomes'): totalIncomes,
-                        tr('total_expenses'): totalExpenses,
-                        tr('total_amount'): total,
-                      })
+            children: {
+              tr('payments'): totalIncomes,
+              tr('charges'): totalExpenses,
+              total > 0 ? tr('surplus') : tr('balance'): total,
+            }
                 .entries
                 .map(
                   (i) => Row(
@@ -194,7 +187,7 @@ class _TotalAmount extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          i.value.toCurrency(context.locale),
+                          i.value.abs().toCurrency(context.locale),
                           style: TextStyle(
                             color: switch (i.value) {
                               > 0 => Colors.green,
