@@ -25,45 +25,57 @@ class _LedgersViewState extends State<LedgersView> {
     return ViewModelProvider(
       viewModel: model,
       child: SafeArea(
-        child: DefaultTabController(
-          length: 2,
-          child: RefreshIndicator(
-            onRefresh: model.onRefresh,
-            notificationPredicate: (notification) {
-              return notification.depth == 2;
+        child: Scaffold(
+          floatingActionButton: FloatingActionButton(
+            heroTag: 'add_ledger_button',
+            onPressed: () async {
+              await model.createNewLedgerTapped();
             },
-            child: NestedScrollView(
-              headerSliverBuilder: (context, isInnerBoxScrolled) => [
-                SliverAppBar(
-                  forceElevated: isInnerBoxScrolled,
-                  title: Text(
-                    tr('appbar_title'),
-                  ),
-                  bottom: TabBar(
-                    tabs: [
-                      Tab(text: tr('my_ledgers')),
-                      Tab(text: tr('shared_with_me')),
-                    ],
-                  ),
-                ),
-              ],
-              body: ValueListenableBuilder(
-                valueListenable: model.isLoading,
-                builder: (context, isLoading, child) {
-                  if (isLoading) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                  return TabBarView(
-                    children: [
-                      _MyLedgersList(),
-                      _SharedLedgersList(),
-                    ],
+            child: Icon(Icons.add),
+          ),
+          body: ValueListenableBuilder(
+            valueListenable: model.isLoading,
+            builder: (context, isLoading, child) => isLoading
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : child!,
+            child: ValueListenableBuilder(
+                valueListenable: model.userLedgers,
+                builder: (context, userLedgers, _) {
+                  return DefaultTabController(
+                    length: userLedgers.isNotEmpty ? 2 : 1,
+                    child: RefreshIndicator(
+                      onRefresh: model.onRefresh,
+                      notificationPredicate: (notification) {
+                        return notification.depth == 2;
+                      },
+                      child: NestedScrollView(
+                        headerSliverBuilder: (context, isInnerBoxScrolled) => [
+                          SliverAppBar(
+                            forceElevated: isInnerBoxScrolled,
+                            title: Text(
+                              tr('appbar_title'),
+                            ),
+                            bottom: TabBar(
+                              tabs: [
+                                if (userLedgers.isNotEmpty)
+                                  Tab(text: tr('my_ledgers')),
+                                Tab(text: tr('shared_with_me')),
+                              ],
+                            ),
+                          ),
+                        ],
+                        body: TabBarView(
+                          children: [
+                            if (userLedgers.isNotEmpty) _MyLedgersList(),
+                            _SharedLedgersList(),
+                          ],
+                        ),
+                      ),
+                    ),
                   );
-                },
-              ),
-            ),
+                }),
           ),
         ),
       ),
@@ -95,45 +107,36 @@ class _MyLedgersList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = ViewModelProvider.of<LedgersViewModel>(context);
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        heroTag: 'add_ledger_button',
-        onPressed: () async {
-          await model.createNewLedgerTapped();
-        },
-        child: Icon(Icons.add),
-      ),
-      body: ValueListenableBuilder(
-        valueListenable: model.userLedgers,
-        builder: (context, ledgers, child) {
-          if (ledgers.isEmpty) {
-            return Center(
-              child: Text(ez.tr('ledgers_view.no_ledgers_msg')),
-            );
-          }
-
-          return AnimatedList(
-            padding: const EdgeInsets.only(bottom: 100),
-            key: model.animatedListKey,
-            initialItemCount: ledgers.length,
-            itemBuilder: (context, i, animation) {
-              final ledger = ledgers[i];
-              return LedgerListTile(
-                key: ValueKey('ledger_${ledger.id}'),
-                ledger: ledger,
-                animation: animation,
-                onDelete: () {
-                  model.deleteLedgerTapped(ledger, i);
-                },
-                onEdit: () {
-                  model.onEditLedgerTapped(ledger);
-                },
-                onTap: () => model.onLedgerTapped(ledger),
-              );
-            },
+    return ValueListenableBuilder(
+      valueListenable: model.userLedgers,
+      builder: (context, ledgers, child) {
+        if (ledgers.isEmpty) {
+          return Center(
+            child: Text(ez.tr('ledgers_view.no_ledgers_msg')),
           );
-        },
-      ),
+        }
+
+        return AnimatedList(
+          padding: const EdgeInsets.only(bottom: 100),
+          key: model.animatedListKey,
+          initialItemCount: ledgers.length,
+          itemBuilder: (context, i, animation) {
+            final ledger = ledgers[i];
+            return LedgerListTile(
+              key: ValueKey('ledger_${ledger.id}'),
+              ledger: ledger,
+              animation: animation,
+              onDelete: () {
+                model.deleteLedgerTapped(ledger, i);
+              },
+              onEdit: () {
+                model.onEditLedgerTapped(ledger);
+              },
+              onTap: () => model.onLedgerTapped(ledger),
+            );
+          },
+        );
+      },
     );
   }
 }
