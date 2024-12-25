@@ -41,9 +41,12 @@ class TransactionCreateOrEditViewModel {
   void init() {
     if (transaction != null) {
       amount = transaction!.amount;
-      if (amount != null && amount! > 0) {
+      if (amount != null && amount! >= 0) {
         isIncome.value = true;
+      } else if (amount != null && amount! < 0) {
+        isIncome.value = false;
       }
+
       comment = transaction!.comment ?? '';
       contact.value = transaction!.contact;
       dateTime.value = transaction!.transactionAt.toLocal();
