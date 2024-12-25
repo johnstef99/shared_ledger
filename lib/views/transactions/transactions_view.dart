@@ -172,8 +172,8 @@ class _TotalAmount extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: {
-              tr('payments'): totalIncomes,
               tr('charges'): totalExpenses,
+              tr('payments'): totalIncomes,
               total > 0 ? tr('surplus') : tr('balance'): total,
             }
                 .entries
