@@ -1,12 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_ledger/app/locator.dart';
+import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/app/utils.dart';
 import 'package:shared_ledger/models/ledger_model.dart';
-import 'package:shared_ledger/repositories/ledger_repository.dart';
-import 'package:shared_ledger/repositories/transactions_repository.dart';
-import 'package:shared_ledger/services/contacts_service.dart';
 import 'package:shared_ledger/views/transactions/transactions_viewmodel.dart';
 import 'package:shared_ledger/widgets/transaction_list_tile_widget.dart';
 import 'package:shared_ledger/widgets/view_model_provider_widget.dart';
@@ -24,17 +21,23 @@ class TransactionsView extends StatefulWidget {
 }
 
 class _TransactionsViewState extends State<TransactionsView> {
-  late final TransactionsViewModel model;
+  late TransactionsViewModel model;
 
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
     model = TransactionsViewModel(
-      ledgerRepo: locator<LedgerRepository>(),
-      transactionsRepo: locator<TransactionsRepository>(),
+      ledgerRepo: context.app.ledgerRepo,
+      transactionsRepo: context.app.transactionsRepo,
       ledgerOrId: widget.ledger,
       router: GoRouter.of(context),
-      contactsService: locator<ContactsService>(),
+      contactsService: context.app.contactsService,
     );
     model.init();
   }

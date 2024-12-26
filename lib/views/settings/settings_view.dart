@@ -1,8 +1,7 @@
 import 'package:easy_localization/easy_localization.dart' as ez;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_ledger/app/locator.dart';
-import 'package:shared_ledger/services/auth_service.dart';
+import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/views/settings/settings_viewmodel.dart';
 
 class SettingsView extends StatefulWidget {
@@ -13,14 +12,14 @@ class SettingsView extends StatefulWidget {
 }
 
 class _SettingsViewState extends State<SettingsView> {
-  late final SettingsViewModel model;
+  late SettingsViewModel model;
 
   static String tr(String key) => ez.tr('settings_view.$key');
 
   @override
-  void initState() {
-    model = SettingsViewModel(authService: locator<AuthService>());
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    model = SettingsViewModel(authService: context.app.authService);
   }
 
   @override

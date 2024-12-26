@@ -60,7 +60,6 @@ class CreateOrEditContactViewModel {
         .onError((error, stackTrace) {
       final context = formKey.currentContext;
       if (context == null || !context.mounted) return;
-      debugPrint('Failed to save contact: $error');
       final message = switch (error) {
         PostgrestException(message: final message)
             when message.contains('contacts_unique_email_per_user_uid') =>

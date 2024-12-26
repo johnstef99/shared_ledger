@@ -2,10 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_ledger/app/locator.dart';
+import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/app/theme.dart';
 import 'package:shared_ledger/views/login/login_viewmodel.dart';
-import 'package:shared_ledger/services/auth_service.dart';
 import 'package:shared_ledger/widgets/text_field_widget.dart';
 import 'package:shared_ledger/widgets/view_model_provider_widget.dart';
 
@@ -22,8 +21,12 @@ class _LoginViewState extends State<LoginView> {
   @override
   void initState() {
     super.initState();
-    final auth = locator<AuthService>();
-    model = LoginViewModel(authService: auth);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    model = LoginViewModel(authService: context.app.authService);
   }
 
   @override

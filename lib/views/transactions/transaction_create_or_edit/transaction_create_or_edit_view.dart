@@ -2,11 +2,9 @@ import 'package:easy_localization/easy_localization.dart' as ez;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_ledger/app/locator.dart';
+import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/app/theme.dart';
 import 'package:shared_ledger/models/transaction_model.dart';
-import 'package:shared_ledger/repositories/transactions_repository.dart';
-import 'package:shared_ledger/services/contacts_service.dart';
 import 'package:shared_ledger/views/transactions/transaction_create_or_edit/transaction_create_or_edit_viewmodel.dart';
 import 'package:shared_ledger/widgets/date_time_field_widget.dart';
 import 'package:shared_ledger/widgets/select_contact_field_widget.dart';
@@ -29,16 +27,16 @@ class TransactionCreateOrEditView extends StatefulWidget {
 
 class _TransactionCreateOrEditViewState
     extends State<TransactionCreateOrEditView> {
-  late final TransactionCreateOrEditViewModel model;
+  late TransactionCreateOrEditViewModel model;
 
   static String tr(String key) => ez.tr('transaction_create_or_edit_view.$key');
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     model = TransactionCreateOrEditViewModel(
-      transactionsRepo: locator<TransactionsRepository>(),
-      contactsService: locator<ContactsService>(),
+      transactionsRepo: context.app.transactionsRepo,
+      contactsService: context.app.contactsService,
       ledgerId: widget.ledgerId,
       transaction: widget.transaction,
       router: GoRouter.of(context),

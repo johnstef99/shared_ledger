@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_ledger/app/locator.dart';
+import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/app/theme.dart';
 import 'package:shared_ledger/app/utils.dart';
 import 'package:shared_ledger/models/ledger_model.dart';
-import 'package:shared_ledger/repositories/ledger_repository.dart';
 import 'package:shared_ledger/views/ledgers/ledger_create_or_edit/ledger_create_or_edit_viewmodel.dart';
 import 'package:easy_localization/easy_localization.dart' as ez;
 import 'package:shared_ledger/widgets/text_field_widget.dart';
@@ -19,17 +18,22 @@ class LedgerCreateOrEditView extends StatefulWidget {
 }
 
 class _LedgerCreateOrEditViewState extends State<LedgerCreateOrEditView> {
-  late final LedgerCreateOrEditViewModel model;
+  late LedgerCreateOrEditViewModel model;
 
   static String tr(String key) => ez.tr('ledger_create_or_edit_view.$key');
 
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     model = LedgerCreateOrEditViewModel(
       router: GoRouter.of(context),
       ledgerOrId: widget.ledgerOrId,
-      ledgerRepo: locator<LedgerRepository>(),
+      ledgerRepo: context.app.ledgerRepo,
     );
   }
 

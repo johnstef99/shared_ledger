@@ -2,25 +2,23 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:shared_ledger/app/locator.dart';
+import 'package:shared_ledger/app/router.dart';
 import 'package:shared_ledger/main.dart';
 import 'package:shared_ledger/models/user_model.dart';
-import 'package:shared_ledger/services/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class MockAuthService extends Mock implements AuthService {}
+import '../../utils/mock_app.dart';
 
 void main() async {
-  final mockAuth = MockAuthService();
-
   setUpAll(() async {
-    locator.registerLazySingleton<AuthService>(() => mockAuth);
     SharedPreferences.setMockInitialValues({});
     await EasyLocalization.ensureInitialized();
+    EasyLocalization.logger.enableBuildModes = [];
+    prefs = await SharedPreferences.getInstance();
   });
 
   tearDown(() {
-    reset(mockAuth);
+    resetAllMocks();
   });
 
   testWidgets('Login with correct email and password',
@@ -35,11 +33,18 @@ void main() async {
       return Future<void>.value();
     });
 
-    final router = getDefaultRouter();
+    when(() => mockLedgerRepo.getLedgers()).thenAnswer((i) {
+      return Future.value([]);
+    });
+
+    when(() => mockLedgerRepo.getSharedWithMeLedgers()).thenAnswer((i) {
+      return Future.value([]);
+    });
 
     await tester.runAsync(() async {
-      await tester.pumpWidget(
-        MyApp(router: router),
+      final router = generateRouter();
+      await tester.pumpMockApp(
+        MyRootWidget(router: router),
       );
 
       await tester.pumpAndSettle();
@@ -70,12 +75,9 @@ void main() async {
     testWidgets('Empty email', (WidgetTester tester) async {
       when(() => mockAuth.user).thenReturn(ValueNotifier(const User.empty()));
 
-      final router = getDefaultRouter();
-
       await tester.runAsync(() async {
-        await tester.pumpWidget(
-          MyApp(router: router),
-        );
+        final router = generateRouter();
+        await tester.pumpMockApp(MyRootWidget(router: router));
         await tester.pumpAndSettle();
         var currentRoute = router.state?.uri.path;
         expect(currentRoute, '/login');
@@ -90,17 +92,15 @@ void main() async {
     testWidgets('Invalid email', (WidgetTester tester) async {
       when(() => mockAuth.user).thenReturn(ValueNotifier(const User.empty()));
 
-      final router = getDefaultRouter();
-
       await tester.runAsync(() async {
-        await tester.pumpWidget(
-          MyApp(router: router),
-        );
+        final router = generateRouter();
+        await tester.pumpMockApp(MyRootWidget(router: router));
         await tester.pumpAndSettle();
         var currentRoute = router.state?.uri.path;
         expect(currentRoute, '/login');
 
-        await tester.enterText(find.byKey(const Key('email')), 'john@johnstef.');
+        await tester.enterText(
+            find.byKey(const Key('email')), 'john@johnstef.');
 
         await tester.tap(find.text('Password Login'));
         await tester.pumpAndSettle();

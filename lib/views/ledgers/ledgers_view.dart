@@ -1,8 +1,7 @@
 import 'package:easy_localization/easy_localization.dart' as ez;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_ledger/app/locator.dart';
-import 'package:shared_ledger/repositories/ledger_repository.dart';
+import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/views/ledgers/ledgers_viewmodel.dart';
 import 'package:shared_ledger/widgets/ledger_list_tile_widget.dart';
 import 'package:shared_ledger/widgets/view_model_provider_widget.dart';
@@ -17,7 +16,7 @@ class LedgersView extends StatefulWidget {
 }
 
 class _LedgersViewState extends State<LedgersView> {
-  late final LedgersViewModel model;
+  late LedgersViewModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -89,10 +88,11 @@ class _LedgersViewState extends State<LedgersView> {
   }
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
     model = LedgersViewModel(
-      ledgerRepository: locator<LedgerRepository>(),
+      ledgerRepository: context.app.ledgerRepo,
       router: GoRouter.of(context),
     );
     model.init();

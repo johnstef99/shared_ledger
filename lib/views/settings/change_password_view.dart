@@ -1,8 +1,7 @@
 import 'package:easy_localization/easy_localization.dart' as ez;
 import 'package:flutter/material.dart';
-import 'package:shared_ledger/app/locator.dart';
+import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/app/theme.dart';
-import 'package:shared_ledger/services/auth_service.dart';
 import 'package:shared_ledger/views/settings/change_password_viewmodel.dart';
 import 'package:shared_ledger/widgets/text_field_widget.dart';
 
@@ -14,7 +13,7 @@ class ChangePasswordView extends StatefulWidget {
 }
 
 class _ChangePasswordViewState extends State<ChangePasswordView> {
-  late final ChangePasswordViewModel model;
+  late ChangePasswordViewModel model;
   late final TextEditingController newPasswordController;
 
   @override
@@ -99,8 +98,13 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
   @override
   void initState() {
     super.initState();
-    model = ChangePasswordViewModel(authService: locator<AuthService>());
     newPasswordController = TextEditingController();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    model = ChangePasswordViewModel(authService: context.app.authService);
   }
 
   static String tr(String key) => ez.tr('change_password_view.$key');

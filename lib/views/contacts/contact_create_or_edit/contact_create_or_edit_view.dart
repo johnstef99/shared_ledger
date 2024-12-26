@@ -2,10 +2,9 @@ import 'package:easy_localization/easy_localization.dart' as ez;
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_ledger/app/locator.dart';
+import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/app/theme.dart';
 import 'package:shared_ledger/models/contact_model.dart';
-import 'package:shared_ledger/services/contacts_service.dart';
 import 'package:shared_ledger/views/contacts/contact_create_or_edit/contact_create_or_edit_viewmodel.dart';
 import 'package:shared_ledger/widgets/text_field_widget.dart';
 
@@ -22,13 +21,14 @@ class ContactCreateOrEditView extends StatefulWidget {
 }
 
 class _ContactCreateOrEditViewState extends State<ContactCreateOrEditView> {
-  late final CreateOrEditContactViewModel model;
+  late CreateOrEditContactViewModel model;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
     model = CreateOrEditContactViewModel(
-      contactsService: locator<ContactsService>(),
+      contactsService: context.app.contactsService,
       router: GoRouter.of(context),
       contact: widget.contact,
     );

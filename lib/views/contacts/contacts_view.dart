@@ -1,8 +1,7 @@
 import 'package:easy_localization/easy_localization.dart' as ez;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_ledger/app/locator.dart';
-import 'package:shared_ledger/services/contacts_service.dart';
+import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/views/contacts/contacts_viewmodel.dart';
 import 'package:shared_ledger/widgets/contact_list_tile_widget.dart';
 import 'package:shared_ledger/widgets/view_model_provider_widget.dart';
@@ -15,15 +14,15 @@ class ContactsView extends StatefulWidget {
 }
 
 class _ContactsViewState extends State<ContactsView> {
-  late final ContactsViewModel model;
+  late ContactsViewModel model;
 
   static String tr(String key) => ez.tr('contacts_view.$key');
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     model = ContactsViewModel(
-      contactsService: locator<ContactsService>(),
+      contactsService: context.app.contactsService,
       router: GoRouter.of(context),
     );
     model.init();

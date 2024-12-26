@@ -1,5 +1,5 @@
 name: shared_ledger
-description: "A new Flutter project."
+description: "Track Shared Expenses with Ease"
 publish_to: "none"
 version: 1.0.0+11
 
@@ -13,7 +13,6 @@ dependencies:
   cupertino_icons: ^1.0.8
   supabase_flutter: ^2.8.1
   go_router: ^14.6.0
-  get_it: ^8.0.2
   easy_localization: ^3.0.7
   mocktail: ^1.0.4
   shared_preferences: ^2.3.3

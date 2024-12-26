@@ -1,9 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_ledger/app/locator.dart';
+import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/views/home/home_viewmodel.dart';
-import 'package:shared_ledger/services/auth_service.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key, required this.child});
@@ -15,13 +14,13 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  late final HomeViewModel model;
+  late HomeViewModel model;
 
   @override
-  void initState() {
-    super.initState();
-    final auth = locator<AuthService>();
-    model = HomeViewModel(authService: auth);
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    model = HomeViewModel(authService: context.app.authService);
   }
 
   @override

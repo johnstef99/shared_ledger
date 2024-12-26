@@ -58,7 +58,6 @@ class LoginViewModel {
         .loginWithPassword(email, password)
         .onError((e, _) => onError(e))
         .whenComplete(() => isLogginIn.value = false);
-    debugPrint('Trying to login with email: $email and password: $password');
   }
 
   Future<void> loginWithToken() async {
@@ -97,7 +96,6 @@ class LoginViewModel {
     }
 
     isMagicCodeSending.value = true;
-    debugPrint('Sending magic code to $email');
     await _authService.magicLogin(email).then(
       (_) {
         final context = formKey.currentContext;

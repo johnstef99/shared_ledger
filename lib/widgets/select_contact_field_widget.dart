@@ -1,8 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_ledger/app/locator.dart';
+import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/models/contact_model.dart';
-import 'package:shared_ledger/services/contacts_service.dart';
 import 'package:shared_ledger/widgets/contact_list_tile_widget.dart';
 
 class SelectContactField extends StatelessWidget {
@@ -84,13 +83,10 @@ class ContactSearchDelegate extends SearchDelegate<Contact?> {
     });
   }
 
-  ValueNotifier<List<Contact>> get contacts =>
-      locator<ContactsService>().contacts;
-
   @override
   Widget buildResults(BuildContext context) {
     return ValueListenableBuilder(
-        valueListenable: contacts,
+        valueListenable: context.app.contactsService.contacts,
         builder: (context, contacts, child) {
           final results = contacts.where((contact) {
             return contact.displayName

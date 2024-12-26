@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_ledger/app/locator.dart';
+import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/main.dart';
 import 'package:shared_ledger/models/contact_model.dart';
 import 'package:shared_ledger/models/ledger_model.dart';
 import 'package:shared_ledger/models/transaction_model.dart';
-import 'package:shared_ledger/repositories/transactions_repository.dart';
-import 'package:shared_ledger/services/auth_service.dart';
-import 'package:shared_ledger/services/contacts_service.dart';
 import 'package:shared_ledger/views/contacts/contact_create_or_edit/contact_create_or_edit_view.dart';
 import 'package:shared_ledger/views/contacts/contacts_view.dart';
 import 'package:shared_ledger/views/home/home_view.dart';
@@ -21,14 +18,14 @@ import 'package:shared_ledger/views/settings/settings_view.dart';
 import 'package:shared_ledger/views/transactions/transaction_create_or_edit/transaction_create_or_edit_view.dart';
 import 'package:shared_ledger/views/transactions/transactions_view.dart';
 
-GoRouter getDefaultRouter() => GoRouter(
+GoRouter generateRouter() => GoRouter(
       initialLocation: '/',
       routes: [
         GoRoute(
           path: '/',
           builder: (context, state) => const SplashPage(),
           redirect: (context, state) async {
-            final auth = locator<AuthService>();
+            final auth = context.app.authService;
             return auth.user.value.isNotEmpty ? '/ledgers' : '/login';
           },
         ),
@@ -125,7 +122,7 @@ GoRouter getDefaultRouter() => GoRouter(
 
                             return Scaffold(
                               body: FutureBuilder(
-                                future: locator<TransactionsRepository>()
+                                future: context.app.transactionsRepo
                                     .getTransaction(transactionId),
                                 builder: (context, snapshot) {
                                   if (snapshot.connectionState ==
@@ -200,8 +197,8 @@ GoRouter getDefaultRouter() => GoRouter(
 
                         return Scaffold(
                           body: FutureBuilder(
-                            future: locator<ContactsService>()
-                                .getContact(contactId),
+                            future:
+                                context.app.contactsRepo.getContact(contactId),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {

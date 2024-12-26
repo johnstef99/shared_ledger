@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart' as ez;
-import 'package:shared_ledger/app/locator.dart';
+import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/app/theme.dart';
-import 'package:shared_ledger/services/auth_service.dart';
 import 'package:shared_ledger/views/settings/delete_account_viewmodel.dart';
 
 class DeleteAccountView extends StatefulWidget {
@@ -15,13 +14,14 @@ class DeleteAccountView extends StatefulWidget {
 class _DeleteAccountViewState extends State<DeleteAccountView> {
   static String tr(String key) => ez.tr('delete_account_view.$key');
 
-  late final DeleteAccountViewModel model;
+  late DeleteAccountViewModel model;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
     model = DeleteAccountViewModel(
-      authService: locator<AuthService>(),
+      authService: context.app.authService,
     );
   }
 
