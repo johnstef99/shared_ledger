@@ -155,4 +155,8 @@ class TransactionsViewModel {
     if (action == null) return;
     transactionsListNotifier.updateSort(action);
   }
+
+  void shareLedger() {
+    _router.go('/ledgers/${ledger.id}/share', extra: ledger);
+  }
 }

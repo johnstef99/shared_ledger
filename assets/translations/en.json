@@ -95,6 +95,17 @@
       "edit": "Update"
     }
   },
+  "ledger_share_view": {
+    "appbar_title": "Share",
+    "share_msg": "The emails you add here will have view access to this ledger",
+    "add_email_btn": "Add Email",
+    "share_with_noone_msg": "You are not sharing this ledger with anyone",
+    "add_email_dialog_title": "Share with",
+    "add_email_dialog_hint": "Email",
+    "add_btn": "Add",
+    "cancel_btn": "Cancel",
+    "email_already_shared": "Already shared with this email"
+  },
   "generic_error_msg": "Something went wrong!",
   "error_msg": {
     "invalid_email": "Invalid email",
@@ -136,6 +147,7 @@
   "charges": "Charges",
   "surplus": "Surplus",
   "select_theme": "Select Theme",
+  "share": "Share",
   "theme_mode": {
     "system": "System",
     "light": "Light",

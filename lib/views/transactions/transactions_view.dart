@@ -66,6 +66,10 @@ class _TransactionsViewState extends State<TransactionsView> {
                         SliverAppBar(
                           title: Text(model.ledger.name),
                           actions: [
+                            IconButton(
+                              onPressed: model.shareLedger,
+                              icon: Icon(Icons.share_outlined),
+                            ),
                             if (!model.ledger.isShared)
                               ValueListenableBuilder(
                                 valueListenable: model.transactionsListNotifier,

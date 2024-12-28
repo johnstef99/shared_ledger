@@ -136,6 +136,9 @@ class _MyLedgersList extends StatelessWidget {
               onEdit: () {
                 model.onEditLedgerTapped(ledger);
               },
+              onShare: () {
+                model.onShareLedgerTapped(ledger);
+              },
               onTap: () => model.onLedgerTapped(ledger),
             );
           },

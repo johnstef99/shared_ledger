@@ -10,6 +10,7 @@ import 'package:shared_ledger/views/contacts/contacts_view.dart';
 import 'package:shared_ledger/views/home/home_view.dart';
 import 'package:shared_ledger/views/invalid_path/invalid_path_view.dart';
 import 'package:shared_ledger/views/ledgers/ledger_create_or_edit/ledger_create_or_edit_view.dart';
+import 'package:shared_ledger/views/ledgers/ledger_share/ledger_share_view.dart';
 import 'package:shared_ledger/views/ledgers/ledgers_view.dart';
 import 'package:shared_ledger/views/login/login_view.dart';
 import 'package:shared_ledger/views/settings/change_password_view.dart';
@@ -77,6 +78,20 @@ GoRouter generateRouter() => GoRouter(
                               _ => null,
                             };
                             return LedgerCreateOrEditView(
+                              ledgerOrId: (ledgerId, ledger),
+                            );
+                          },
+                        ),
+                        GoRoute(
+                          path: '/share',
+                          builder: (context, state) {
+                            final ledgerId =
+                                int.parse(state.pathParameters['ledgerId']!);
+                            final ledger = switch (state.extra) {
+                              Ledger l => l,
+                              _ => null,
+                            };
+                            return LedgerShareView(
                               ledgerOrId: (ledgerId, ledger),
                             );
                           },

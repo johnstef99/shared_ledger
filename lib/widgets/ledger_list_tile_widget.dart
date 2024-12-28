@@ -10,6 +10,7 @@ class LedgerListTile extends StatelessWidget {
   final void Function()? onDelete;
   final void Function()? onEdit;
   final void Function()? onTap;
+  final void Function()? onShare;
 
   const LedgerListTile({
     super.key,
@@ -18,11 +19,17 @@ class LedgerListTile extends StatelessWidget {
     this.onDelete,
     this.onEdit,
     this.onTap,
+    this.onShare,
   });
 
   @override
   Widget build(BuildContext context) {
     final actions = <PopupMenuEntry>[
+      if (onEdit != null)
+        PopupMenuItem(
+          onTap: onShare,
+          child: Text(tr('share')),
+        ),
       if (onEdit != null)
         PopupMenuItem(
           onTap: onEdit,

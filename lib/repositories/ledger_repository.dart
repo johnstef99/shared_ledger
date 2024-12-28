@@ -79,4 +79,27 @@ class LedgerRepository {
 
     return Ledger.fromEntity(data, _authService.user.value.uid);
   }
+
+  Future<List<String>> getSharedEmails(int ledgerId) async {
+    return await _supabase
+        .from('ledgers_users')
+        .select('user_email')
+        .eq('ledger_id', ledgerId)
+        .then((data) => data.map((e) => e['user_email'] as String).toList());
+  }
+
+  Future<void> addSharedEmail(int id, String email) async {
+    await _supabase.from('ledgers_users').insert({
+      'ledger_id': id,
+      'user_email': email,
+    });
+  }
+
+  Future<void> removeSharedEmail(int id, String email) async {
+    await _supabase
+        .from('ledgers_users')
+        .delete()
+        .eq('ledger_id', id)
+        .eq('user_email', email);
+  }
 }

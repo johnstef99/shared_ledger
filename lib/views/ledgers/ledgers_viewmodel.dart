@@ -83,4 +83,8 @@ class LedgersViewModel {
       userLedgers.value = data;
     });
   }
+
+  void onShareLedgerTapped(Ledger ledger) {
+    _router.go('/ledgers/${ledger.id}/share', extra: ledger);
+  }
 }

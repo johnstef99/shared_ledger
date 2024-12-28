@@ -95,6 +95,17 @@
       "edit": "Ενημέρωση"
     }
   },
+  "ledger_share_view": {
+    "appbar_title": "Κοινοποίηση",
+    "share_msg": "Τα emails που προσθέτετε εδώ θα έχουν πρόσβαση προβολής σε αυτό το βιβλίο",
+    "add_email_btn": "Προσθήκη Email",
+    "share_with_noone_msg": "Δεν κοινοποιείτε αυτό το βιβλίο με κανέναν",
+    "add_email_dialog_title": "Κοινοποίηση με",
+    "add_email_dialog_hint": "Email",
+    "add_btn": "Προσθήκη",
+    "cancel_btn": "Ακύρωση",
+    "email_already_shared": "Ήδη κοινοποιείται με αυτό το email"
+  },
   "generic_error_msg": "Κάτι πήγε στραβά!",
   "error_msg": {
     "invalid_email": "Μη έγκυρο email",
@@ -136,6 +147,7 @@
   "charges": "Οφειλές",
   "surplus": "Πλεόνασμα",
   "select_theme": "Επιλογή Θέματος",
+  "share": "Κοινοποίηση",
   "theme_mode": {
     "system": "Σύστημα",
     "light": "Φωτεινό",
