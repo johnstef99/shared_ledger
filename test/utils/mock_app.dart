@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_ledger/app/app.dart';
+import 'package:shared_ledger/app/theme.dart';
 import 'package:shared_ledger/services/auth_service.dart';
 import 'package:shared_ledger/repositories/contacts_repository.dart';
 import 'package:shared_ledger/repositories/ledger_repository.dart';
@@ -18,11 +19,17 @@ class MockTransactionsRepo extends Mock implements TransactionsRepository {}
 
 class MockContactsService extends Mock implements ContactsService {}
 
+class MockThemeModeNotifier extends Mock implements ThemeModeNotifier {
+  @override
+  ThemeMode get value => ThemeMode.light;
+}
+
 final mockAuth = MockAuthService();
 final mockLedgerRepo = MockLedgerRepo();
 final mockContactsRepo = MockContactsRepo();
 final mockTransactionsRepo = MockTransactionsRepo();
 final mockContactsService = MockContactsService();
+final mockThemeModeNotifier = MockThemeModeNotifier();
 
 void resetAllMocks() {
   reset(mockAuth);
@@ -41,6 +48,7 @@ extension MockTester on WidgetTester {
         contactsRepo: mockContactsRepo,
         contactsService: mockContactsService,
         transactionsRepo: mockTransactionsRepo,
+        themeModeNotifier: mockThemeModeNotifier,
         child: widget,
       ),
     );

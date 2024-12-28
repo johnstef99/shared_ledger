@@ -56,6 +56,7 @@ class DateTimeField extends StatelessWidget {
                       },
                       readOnly: true,
                       decoration: InputDecoration(
+                        isDense: true,
                         prefixIcon: Icon(Icons.calendar_today_outlined),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
@@ -84,6 +85,7 @@ class DateTimeField extends StatelessWidget {
                       },
                       readOnly: true,
                       decoration: InputDecoration(
+                        isDense: true,
                         prefixIcon: Icon(Icons.access_time_outlined),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),

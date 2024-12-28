@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_ledger/app/theme.dart';
 import 'package:shared_ledger/repositories/contacts_repository.dart';
 import 'package:shared_ledger/repositories/ledger_repository.dart';
 import 'package:shared_ledger/repositories/transactions_repository.dart';
@@ -11,6 +12,7 @@ class App extends InheritedWidget {
   final ContactsRepository contactsRepo;
   final ContactsService contactsService;
   final TransactionsRepository transactionsRepo;
+  final ThemeModeNotifier themeModeNotifier;
 
   const App({
     super.key,
@@ -20,6 +22,7 @@ class App extends InheritedWidget {
     required this.contactsRepo,
     required this.contactsService,
     required this.transactionsRepo,
+    required this.themeModeNotifier,
   });
 
   static App of(BuildContext context) {
@@ -33,12 +36,12 @@ class App extends InheritedWidget {
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) {
     switch (oldWidget) {
-      case App() when oldWidget.child != child:
       case App() when oldWidget.authService != authService:
       case App() when oldWidget.ledgerRepo != ledgerRepo:
       case App() when oldWidget.contactsRepo != contactsRepo:
       case App() when oldWidget.contactsService != contactsService:
       case App() when oldWidget.transactionsRepo != transactionsRepo:
+      case App() when oldWidget.themeModeNotifier != themeModeNotifier:
         return true;
       default:
         return false;

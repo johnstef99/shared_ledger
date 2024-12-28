@@ -68,6 +68,7 @@ class SLTextField extends StatelessWidget {
             controller: controller,
             onTapOutside: (_) => FocusScope.of(context).unfocus(),
             decoration: InputDecoration(
+              isDense: true,
               suffixIcon: suffixIcon,
               prefixIcon: prefixIcon,
               border: OutlineInputBorder(

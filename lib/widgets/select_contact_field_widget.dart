@@ -43,6 +43,7 @@ class SelectContactField extends StatelessWidget {
                 },
                 readOnly: true,
                 decoration: InputDecoration(
+                  isDense: true,
                   prefixIcon: Icon(Icons.person_outlined),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),

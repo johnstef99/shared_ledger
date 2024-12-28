@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/app/router.dart';
+import 'package:shared_ledger/app/theme.dart';
 import 'package:shared_ledger/repositories/contacts_repository.dart';
 import 'package:shared_ledger/repositories/ledger_repository.dart';
 import 'package:shared_ledger/repositories/transactions_repository.dart';
@@ -51,6 +52,7 @@ class _MyAppState extends State<MyApp> {
   late final ContactsRepository contactsRepo;
   late final ContactsService contactsService;
   late final TransactionsRepository transactionsRepo;
+  late final ThemeModeNotifier themeModeNotifier;
 
   @override
   void initState() {
@@ -72,6 +74,9 @@ class _MyAppState extends State<MyApp> {
     transactionsRepo = TransactionsRepository(
       supabase: supabase,
     );
+    themeModeNotifier = ThemeModeNotifier(
+      prefs: prefs,
+    );
   }
 
   @override
@@ -82,6 +87,7 @@ class _MyAppState extends State<MyApp> {
       contactsRepo: contactsRepo,
       contactsService: contactsService,
       transactionsRepo: transactionsRepo,
+      themeModeNotifier: themeModeNotifier,
       child: MyRootWidget(),
     );
   }
@@ -119,8 +125,9 @@ class _MyRootWidgetState extends State<MyRootWidget> {
       useOnlyLangCode: true,
       fallbackLocale: const Locale('en'),
       useFallbackTranslations: true,
-      child: Builder(builder: (context) {
-        return MaterialApp.router(
+      child: ValueListenableBuilder(
+        valueListenable: context.app.themeModeNotifier,
+        builder: (context, themeMode, child) => MaterialApp.router(
           title: 'Shared Ledger',
           routerConfig: router,
           localizationsDelegates: context.localizationDelegates,
@@ -132,21 +139,11 @@ class _MyRootWidgetState extends State<MyRootWidget> {
               child: child!,
             );
           },
-          theme: ThemeData(
-            colorScheme: const ColorScheme.light(
-              primary: Colors.black,
-            ),
-            useMaterial3: true,
-            elevatedButtonTheme: ElevatedButtonThemeData(
-              style: ElevatedButton.styleFrom(
-                elevation: 2,
-                fixedSize: const Size(double.infinity, 48),
-                maximumSize: const Size(350, 48),
-              ),
-            ),
-          ),
-        );
-      }),
+          themeMode: themeMode,
+          theme: lightTheme,
+          darkTheme: darkTheme,
+        ),
+      ),
     );
   }
 }

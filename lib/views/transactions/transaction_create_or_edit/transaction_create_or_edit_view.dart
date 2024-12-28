@@ -110,6 +110,7 @@ class _TransactionCreateOrEditViewState
                                 child: SegmentedButton<bool>(
                                   showSelectedIcon: false,
                                   style: SegmentedButton.styleFrom(
+                                    selectedForegroundColor: Colors.black,
                                     selectedBackgroundColor: isIncome
                                         ? Colors.lightGreen.shade200
                                         : Colors.red.shade200,

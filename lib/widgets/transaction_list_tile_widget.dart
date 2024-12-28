@@ -43,7 +43,7 @@ class TransactionListTile extends StatelessWidget {
           title: Text(
             transaction.contact?.displayName ?? tr('deleted_contact'),
             style: TextStyle(
-              color: transaction.contact == null ? Colors.grey : Colors.black,
+              color: transaction.contact == null ? Colors.grey : null,
             ),
           ),
           subtitle: Column(
@@ -61,7 +61,7 @@ class TransactionListTile extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Colors.grey.shade800,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     fontWeight: FontWeight.w300,
                   ),
                 ),

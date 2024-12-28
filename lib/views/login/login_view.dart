@@ -167,12 +167,10 @@ class _SelectLoginType extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        ElevatedButton(
+        OutlinedButton(
           style: ElevatedButton.styleFrom(
             fixedSize: const Size(double.infinity, 48),
             maximumSize: const Size(350, 48),
-            backgroundColor: Colors.black,
-            foregroundColor: Colors.white,
           ),
           onPressed: () => onLoginTypeSelected(LoginType.magic),
           child: Text(
@@ -233,8 +231,6 @@ class _MaginLoginButtons extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             fixedSize: const Size(double.infinity, 48),
             maximumSize: const Size(350, 48),
-            backgroundColor: Colors.black,
-            foregroundColor: Colors.white,
           ),
           onPressed: model.loginWithToken,
           child: ValueListenableBuilder(
