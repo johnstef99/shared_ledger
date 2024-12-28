@@ -111,8 +111,12 @@ class _MyLedgersList extends StatelessWidget {
       valueListenable: model.userLedgers,
       builder: (context, ledgers, child) {
         if (ledgers.isEmpty) {
-          return Center(
-            child: Text(ez.tr('ledgers_view.no_ledgers_msg')),
+          return SingleChildScrollView(
+            child: Padding(
+              padding:
+                  EdgeInsets.only(top: MediaQuery.of(context).size.height / 3),
+              child: Center(child: Text(ez.tr('ledgers_view.no_ledgers_msg'))),
+            ),
           );
         }
 
@@ -151,8 +155,12 @@ class _SharedLedgersList extends StatelessWidget {
       valueListenable: model.sharedLedgers,
       builder: (context, ledgers, child) {
         if (ledgers.isEmpty) {
-          return Center(
-            child: Text(ez.tr('ledgers_view.no_ledgers_msg')),
+          return SingleChildScrollView(
+            child: Padding(
+              padding:
+                  EdgeInsets.only(top: MediaQuery.of(context).size.height / 3),
+              child: Center(child: Text(ez.tr('ledgers_view.no_ledgers_msg'))),
+            ),
           );
         }
 
