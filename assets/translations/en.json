@@ -97,7 +97,7 @@
   },
   "ledger_share_view": {
     "appbar_title": "Share",
-    "share_msg": "The emails you add here will have view access to this ledger",
+    "share_msg": "The emails you add here will have view access to this ledger. They will be able to see all the transactions and contacts.",
     "add_email_btn": "Add Email",
     "share_with_noone_msg": "You are not sharing this ledger with anyone",
     "add_email_dialog_title": "Share with",
