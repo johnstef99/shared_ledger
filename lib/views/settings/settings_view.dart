@@ -38,6 +38,16 @@ class _SettingsViewState extends State<SettingsView> {
               trailing: const Icon(Icons.arrow_forward_ios),
             ),
             ListTile(
+              title: Text(tr('change_theme_btn')),
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) => _ChangeThemeBottomSheet(),
+                );
+              },
+              trailing: const Icon(Icons.arrow_forward_ios),
+            ),
+            ListTile(
               title: Text(tr('change_language_btn')),
               onTap: () {
                 showModalBottomSheet(
@@ -107,6 +117,35 @@ class _ChangeLanguageBottomSheet extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
+      ],
+    );
+  }
+}
+
+class _ChangeThemeBottomSheet extends StatelessWidget {
+  const _ChangeThemeBottomSheet();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(height: 16),
+        Text(
+          ez.tr('select_theme'),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        for (final mode in ThemeMode.values)
+          ListTile(
+            title: Text(ez.tr('theme_mode.${mode.name}')),
+            onTap: () {
+              context.app.themeModeNotifier.update((_) => mode);
+              Navigator.of(context).pop();
+            },
+          ),
       ],
     );
   }

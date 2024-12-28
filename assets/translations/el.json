@@ -23,6 +23,7 @@
     "change_password_btn": "Αλλαγή Κωδικού",
     "delete_account_btn": "Διαγραφή Λογαριασμού",
     "change_language_btn": "Αλλαγή Γλώσσας",
+    "change_theme_btn": "Αλλαγή Θέματος",
     "logout_btn": "Αποσύνδεση"
   },
   "change_password_view": {
@@ -133,5 +134,11 @@
   "balance": "Υπόλοιπο",
   "payments": "Πληρωμές",
   "charges": "Οφειλές",
-  "surplus": "Πλεόνασμα"
+  "surplus": "Πλεόνασμα",
+  "select_theme": "Επιλογή Θέματος",
+  "theme_mode": {
+    "system": "Σύστημα",
+    "light": "Φωτεινό",
+    "dark": "Σκοτεινό"
+  }
 }
