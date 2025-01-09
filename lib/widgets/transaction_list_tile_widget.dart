@@ -31,63 +31,59 @@ class TransactionListTile extends StatelessWidget {
         ),
     ];
 
-    return Tooltip(
-      triggerMode: TooltipTriggerMode.longPress,
-      message: transaction.comment ?? '',
-      child: Card(
-        clipBehavior: Clip.antiAlias,
-        child: ListTile(
-          contentPadding:
-              EdgeInsets.only(left: 16, right: actions.isEmpty ? 16 : 0),
-          key: ValueKey('transaction_${transaction.id}'),
-          title: Text(
-            transaction.contact?.displayName ?? tr('deleted_contact'),
-            style: TextStyle(
-              color: transaction.contact == null ? Colors.grey : null,
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      child: ListTile(
+        contentPadding:
+            EdgeInsets.only(left: 16, right: actions.isEmpty ? 16 : 0),
+        key: ValueKey('transaction_${transaction.id}'),
+        title: Text(
+          transaction.contact?.displayName ?? tr('deleted_contact'),
+          style: TextStyle(
+            color: transaction.contact == null ? Colors.grey : null,
+          ),
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              DateFormat('d MMM yyyy HH:mm', context.locale.toLanguageTag())
+                  .format(
+                transaction.transactionAt.toLocal(),
+              ),
             ),
-          ),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            if (transaction.comment?.isNotEmpty == true)
               Text(
-                DateFormat('d MMM yyyy HH:mm', context.locale.toLanguageTag())
-                    .format(
-                  transaction.transactionAt.toLocal(),
-                ),
-              ),
-              if (transaction.comment?.isNotEmpty == true)
-                Text(
-                  transaction.comment!,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    fontWeight: FontWeight.w300,
-                  ),
-                ),
-            ],
-          ),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                transaction.amount.abs().toCurrency(context.locale),
+                transaction.comment!,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  color: switch (transaction.amount) {
-                    > 0 => Colors.green,
-                    < 0 => Colors.red,
-                    _ => Colors.grey,
-                  },
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  fontWeight: FontWeight.w300,
                 ),
               ),
-              if (actions.isNotEmpty)
-                PopupMenuButton(
-                    icon: const Icon(Icons.more_vert),
-                    itemBuilder: (context) => actions),
-            ],
-          ),
+          ],
+        ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              transaction.amount.abs().toCurrency(context.locale),
+              style: TextStyle(
+                color: switch (transaction.amount) {
+                  > 0 => Colors.green,
+                  < 0 => Colors.red,
+                  _ => Colors.grey,
+                },
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+            if (actions.isNotEmpty)
+              PopupMenuButton(
+                  icon: const Icon(Icons.more_vert),
+                  itemBuilder: (context) => actions),
+          ],
         ),
       ),
     );
