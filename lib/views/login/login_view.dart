@@ -57,8 +57,8 @@ class _LoginViewState extends State<LoginView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Shared Ledger',
+                     Text(
+                      tr('app_name'),
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 32,

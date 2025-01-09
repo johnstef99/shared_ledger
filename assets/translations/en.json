@@ -152,5 +152,6 @@
     "system": "System",
     "light": "Light",
     "dark": "Dark"
-  }
+  },
+  "app_name": "Shared Ledger"
 }
