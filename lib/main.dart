@@ -134,8 +134,9 @@ class _MyRootWidgetState extends State<MyRootWidget> {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           builder: (context, child) {
-            return Padding(
+            return Container(
               padding: EdgeInsets.only(bottom: isPwa && isWebiOS ? 25 : 0),
+              color: Theme.of(context).scaffoldBackgroundColor,
               child: child!,
             );
           },
