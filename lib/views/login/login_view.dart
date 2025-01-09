@@ -161,9 +161,9 @@ class _SelectLoginType extends StatelessWidget {
             fixedSize: const Size(double.infinity, 48),
             maximumSize: const Size(350, 48),
           ),
-          onPressed: () => onLoginTypeSelected(LoginType.password),
+          onPressed: () => onLoginTypeSelected(LoginType.magic),
           child: Text(
-            tr('login_view.login_type.password'),
+            tr('login_view.login_type.magic'),
           ),
         ),
         const SizedBox(height: 20),
@@ -172,9 +172,9 @@ class _SelectLoginType extends StatelessWidget {
             fixedSize: const Size(double.infinity, 48),
             maximumSize: const Size(350, 48),
           ),
-          onPressed: () => onLoginTypeSelected(LoginType.magic),
+          onPressed: () => onLoginTypeSelected(LoginType.password),
           child: Text(
-            tr('login_view.login_type.magic'),
+            tr('login_view.login_type.password'),
           ),
         ),
       ],
