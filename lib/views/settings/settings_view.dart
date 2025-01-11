@@ -85,7 +85,7 @@ class _SettingsViewState extends State<SettingsView> {
           ],
         ),
         SliverFillRemaining(
-            hasScrollBody: false,
+          hasScrollBody: false,
           child: Container(
             padding: const EdgeInsets.all(16),
             alignment: Alignment.bottomCenter,
