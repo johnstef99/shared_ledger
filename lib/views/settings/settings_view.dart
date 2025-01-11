@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/views/settings/settings_viewmodel.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
@@ -81,6 +83,19 @@ class _SettingsViewState extends State<SettingsView> {
               onTap: () => model.logout(),
             ),
           ],
+        ),
+        SliverFillRemaining(
+            hasScrollBody: false,
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            alignment: Alignment.bottomCenter,
+            child: OutlinedButton(
+              onPressed: () {
+                launchUrlString('https://donate.stripe.com/4gwg1le8U3fz9203cc');
+              },
+              child: Text(ez.tr('donate_to_developer')),
+            ),
+          ),
         ),
       ],
     );
