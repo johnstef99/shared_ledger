@@ -35,6 +35,13 @@ GoRouter generateRouter() => GoRouter(
           builder: (context, state) => const LoginView(),
         ),
         StatefulShellRoute.indexedStack(
+          redirect: (context, state) {
+            final auth = context.app.authService;
+            if (auth.user.value.isEmpty) {
+              return '/login';
+            }
+            return null;
+          },
           builder: (context, state, child) => HomeView(child: child),
           branches: [
             StatefulShellBranch(
