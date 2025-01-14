@@ -9,7 +9,7 @@ class Contact with _$Contact {
   const Contact._();
 
   const factory Contact({
-    required int id,
+    required String id,
     required String? email,
     required String name,
     required String? phoneNumber,

@@ -6,10 +6,10 @@ part 'ledger_entity.g.dart';
 @freezed
 class LedgerEntity with _$LedgerEntity {
   const factory LedgerEntity({
-    required int id,
+    required String id,
     required String name,
-    required String userUid,
-    required DateTime createdAt,
+    required String userId,
+    required DateTime created,
     required String? description,
   }) = _LedgerEntity;
 

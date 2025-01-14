@@ -27,7 +27,7 @@ void main() async {
     when(() => mockAuth.loginWithPassword('john@johnstef.com', 'password'))
         .thenAnswer((i) {
       mockAuth.user.value = const User(
-        uid: '123',
+        id: '123',
         email: 'john@johnstef.com',
       );
       return Future<void>.value();

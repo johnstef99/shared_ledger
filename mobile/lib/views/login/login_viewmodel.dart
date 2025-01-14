@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:pocketbase/pocketbase.dart';
 import 'package:shared_ledger/models/user_model.dart';
 import 'package:shared_ledger/services/auth_service.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' as supa;
 
 enum LoginType { password, magic }
 
@@ -29,6 +29,7 @@ class LoginViewModel {
   String password = '';
   String token = '';
   DateTime? lastSentMagicLink;
+  OTPResponse? otpResponse;
 
   LoginViewModel({required AuthService authService})
       : _authService = authService;
@@ -61,12 +62,13 @@ class LoginViewModel {
   }
 
   Future<void> loginWithToken() async {
+    if (otpResponse == null) return;
     if (formKey.currentState?.validate() == false) return;
     formKey.currentState?.save();
 
     isLogginIn.value = true;
     await _authService
-        .loginWithToken(email, token)
+        .loginWithToken(otpResponse!.otpId, token)
         .whenComplete(() => isLogginIn.value = false)
         .onError((e, _) => onError(e));
   }
@@ -75,7 +77,7 @@ class LoginViewModel {
     final context = formKey.currentContext;
     if (context == null || !context.mounted) return;
     final message = switch (e) {
-      supa.AuthException e => e.message,
+      ClientException(response: {'message': String msg}) => msg,
       _ => tr('generic_error_msg'),
     };
     ScaffoldMessenger.of(context).showSnackBar(
@@ -96,17 +98,21 @@ class LoginViewModel {
     }
 
     isMagicCodeSending.value = true;
-    await _authService.magicLogin(email).then(
-      (_) {
+    otpResponse = await _authService.magicLogin(email).then<OTPResponse?>(
+      (otp) {
         final context = formKey.currentContext;
         lastSentMagicLink = DateTime.now();
-        if (context == null || !context.mounted) return;
+        if (context == null || !context.mounted) return otp;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
               content: Text(tr('login_view.code_sent_msg', args: [email]))),
         );
+        return otp;
       },
-      onError: (e, _) => onError(e),
+      onError: (e, _) {
+        onError(e);
+        return null;
+      },
     ).whenComplete(() {
       isMagicCodeSending.value = false;
     });

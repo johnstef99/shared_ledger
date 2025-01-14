@@ -8,9 +8,9 @@ part 'ledger_model.g.dart';
 class Ledger with _$Ledger {
 
   const factory Ledger({
-    required int id,
+    required String id,
     required String name,
-    required DateTime createdAt,
+    required DateTime created,
     required bool isShared,
     required String? description,
   }) = _Ledger;
@@ -21,8 +21,8 @@ class Ledger with _$Ledger {
     return Ledger(
       id: entity.id,
       name: entity.name,
-      createdAt: entity.createdAt,
-      isShared: entity.userUid != userUid,
+      created: entity.created,
+      isShared: entity.userId != userUid,
       description: entity.description,
     );
   }

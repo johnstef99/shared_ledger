@@ -6,8 +6,8 @@ part 'contact_entity.g.dart';
 @freezed
 class ContactEntity with _$ContactEntity {
   const factory ContactEntity({
-    required int id,
-    required String userUid,
+    required String id,
+    required String userId,
     required String? email,
     required String name,
     required String? phoneNumber,

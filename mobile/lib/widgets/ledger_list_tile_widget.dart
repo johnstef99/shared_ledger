@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_ledger/app/utils.dart';
 import 'package:shared_ledger/models/ledger_model.dart';
 
 class LedgerListTile extends StatelessWidget {
@@ -50,10 +51,10 @@ class LedgerListTile extends StatelessWidget {
           key: ValueKey(ledger.id),
           title: Text(ledger.name),
           subtitle: Text(
-            ledger.description ??
+            ledger.description.orNull ??
                 DateFormat('d MMM yyyy HH:mm', context.locale.toLanguageTag())
                     .format(
-                  ledger.createdAt.toLocal(),
+                  ledger.created.toLocal(),
                 ),
           ),
           onTap: onTap,

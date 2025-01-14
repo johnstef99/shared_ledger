@@ -9,11 +9,11 @@ part of 'transaction_entity.dart';
 _$TransactionEntityImpl _$$TransactionEntityImplFromJson(
         Map<String, dynamic> json) =>
     _$TransactionEntityImpl(
-      id: (json['id'] as num).toInt(),
-      ledgerId: (json['ledger_id'] as num).toInt(),
-      contactId: (json['contact_id'] as num?)?.toInt(),
+      id: json['id'] as String,
+      ledgerId: json['ledger_id'] as String,
+      contactId: json['contact_id'] as String?,
       amount: (json['amount'] as num).toDouble(),
-      createdAt: DateTime.parse(json['created_at'] as String),
+      created: DateTime.parse(json['created'] as String),
       transactionAt: DateTime.parse(json['transaction_at'] as String),
       comment: json['comment'] as String?,
     );
@@ -25,7 +25,7 @@ Map<String, dynamic> _$$TransactionEntityImplToJson(
       'ledger_id': instance.ledgerId,
       'contact_id': instance.contactId,
       'amount': instance.amount,
-      'created_at': instance.createdAt.toIso8601String(),
+      'created': instance.created.toIso8601String(),
       'transaction_at': instance.transactionAt.toIso8601String(),
       'comment': instance.comment,
     };

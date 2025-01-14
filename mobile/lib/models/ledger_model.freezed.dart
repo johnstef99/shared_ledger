@@ -20,9 +20,9 @@ Ledger _$LedgerFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Ledger {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get created => throw _privateConstructorUsedError;
   bool get isShared => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
 
@@ -41,9 +41,9 @@ abstract class $LedgerCopyWith<$Res> {
       _$LedgerCopyWithImpl<$Res, Ledger>;
   @useResult
   $Res call(
-      {int id,
+      {String id,
       String name,
-      DateTime createdAt,
+      DateTime created,
       bool isShared,
       String? description});
 }
@@ -65,7 +65,7 @@ class _$LedgerCopyWithImpl<$Res, $Val extends Ledger>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? createdAt = null,
+    Object? created = null,
     Object? isShared = null,
     Object? description = freezed,
   }) {
@@ -73,14 +73,14 @@ class _$LedgerCopyWithImpl<$Res, $Val extends Ledger>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      created: null == created
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
       isShared: null == isShared
           ? _value.isShared
@@ -102,9 +102,9 @@ abstract class _$$LedgerImplCopyWith<$Res> implements $LedgerCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
+      {String id,
       String name,
-      DateTime createdAt,
+      DateTime created,
       bool isShared,
       String? description});
 }
@@ -124,7 +124,7 @@ class __$$LedgerImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? createdAt = null,
+    Object? created = null,
     Object? isShared = null,
     Object? description = freezed,
   }) {
@@ -132,14 +132,14 @@ class __$$LedgerImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      created: null == created
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
       isShared: null == isShared
           ? _value.isShared
@@ -159,7 +159,7 @@ class _$LedgerImpl implements _Ledger {
   const _$LedgerImpl(
       {required this.id,
       required this.name,
-      required this.createdAt,
+      required this.created,
       required this.isShared,
       required this.description});
 
@@ -167,11 +167,11 @@ class _$LedgerImpl implements _Ledger {
       _$$LedgerImplFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
   final String name;
   @override
-  final DateTime createdAt;
+  final DateTime created;
   @override
   final bool isShared;
   @override
@@ -179,7 +179,7 @@ class _$LedgerImpl implements _Ledger {
 
   @override
   String toString() {
-    return 'Ledger(id: $id, name: $name, createdAt: $createdAt, isShared: $isShared, description: $description)';
+    return 'Ledger(id: $id, name: $name, created: $created, isShared: $isShared, description: $description)';
   }
 
   @override
@@ -189,8 +189,7 @@ class _$LedgerImpl implements _Ledger {
             other is _$LedgerImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
+            (identical(other.created, created) || other.created == created) &&
             (identical(other.isShared, isShared) ||
                 other.isShared == isShared) &&
             (identical(other.description, description) ||
@@ -200,7 +199,7 @@ class _$LedgerImpl implements _Ledger {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, createdAt, isShared, description);
+      Object.hash(runtimeType, id, name, created, isShared, description);
 
   /// Create a copy of Ledger
   /// with the given fields replaced by the non-null parameter values.
@@ -220,20 +219,20 @@ class _$LedgerImpl implements _Ledger {
 
 abstract class _Ledger implements Ledger {
   const factory _Ledger(
-      {required final int id,
+      {required final String id,
       required final String name,
-      required final DateTime createdAt,
+      required final DateTime created,
       required final bool isShared,
       required final String? description}) = _$LedgerImpl;
 
   factory _Ledger.fromJson(Map<String, dynamic> json) = _$LedgerImpl.fromJson;
 
   @override
-  int get id;
+  String get id;
   @override
   String get name;
   @override
-  DateTime get createdAt;
+  DateTime get created;
   @override
   bool get isShared;
   @override

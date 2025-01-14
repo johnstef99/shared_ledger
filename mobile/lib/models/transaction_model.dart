@@ -8,11 +8,11 @@ part 'transaction_model.g.dart';
 @freezed
 class Transaction with _$Transaction {
   factory Transaction({
-    required int id,
-    required int ledgerId,
+    required String id,
+    required String ledgerId,
     required Contact? contact,
     required double amount,
-    required DateTime createdAt,
+    required DateTime created,
     required DateTime transactionAt,
     String? comment,
   }) = _Transaction;
@@ -27,7 +27,7 @@ class Transaction with _$Transaction {
       contact: contact,
       amount: entity.amount,
       comment: entity.comment,
-      createdAt: entity.createdAt,
+      created: entity.created,
       transactionAt: entity.transactionAt,
     );
   }

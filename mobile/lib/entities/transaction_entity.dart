@@ -6,11 +6,11 @@ part 'transaction_entity.g.dart';
 @freezed
 class TransactionEntity with _$TransactionEntity {
   factory TransactionEntity({
-    required int id,
-    required int ledgerId,
-    required int? contactId,
+    required String id,
+    required String ledgerId,
+    required String? contactId,
     required double amount,
-    required DateTime createdAt,
+    required DateTime created,
     required DateTime transactionAt,
     String? comment,
   }) = _TransactionEntity;

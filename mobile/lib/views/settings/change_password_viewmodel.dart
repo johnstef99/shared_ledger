@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:pocketbase/pocketbase.dart';
 import 'package:shared_ledger/services/auth_service.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' as supa;
 
 class ChangePasswordViewModel {
   final AuthService _authService;
@@ -37,7 +37,7 @@ class ChangePasswordViewModel {
       final context = formKey.currentContext;
       if (context == null || !context.mounted) return;
       final message = switch (e) {
-        supa.AuthException e => e.message,
+        ClientException(response: {'message': String msg}) => msg,
         _ => tr('generic_error_msg'),
       };
       ScaffoldMessenger.of(context).showSnackBar(

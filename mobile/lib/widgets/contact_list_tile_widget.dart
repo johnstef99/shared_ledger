@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_ledger/app/utils.dart';
 import 'package:shared_ledger/models/contact_model.dart';
 
 class ContactListTile extends StatelessWidget {
@@ -40,8 +41,8 @@ class ContactListTile extends StatelessWidget {
         onTap: onTap,
         subtitle: Column(
           children: [
-            (contact.phoneNumber ?? '-', Icons.phone_outlined),
-            (contact.email ?? '-', Icons.email_outlined)
+            (contact.phoneNumber.orNull ?? '-', Icons.phone_outlined),
+            (contact.email.orNull ?? '-', Icons.email_outlined)
           ]
               .map((i) => Row(
                     children: [

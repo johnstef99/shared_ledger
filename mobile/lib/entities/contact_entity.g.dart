@@ -8,8 +8,8 @@ part of 'contact_entity.dart';
 
 _$ContactEntityImpl _$$ContactEntityImplFromJson(Map<String, dynamic> json) =>
     _$ContactEntityImpl(
-      id: (json['id'] as num).toInt(),
-      userUid: json['user_uid'] as String,
+      id: json['id'] as String,
+      userId: json['user_id'] as String,
       email: json['email'] as String?,
       name: json['name'] as String,
       phoneNumber: json['phone_number'] as String?,
@@ -18,7 +18,7 @@ _$ContactEntityImpl _$$ContactEntityImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$ContactEntityImplToJson(_$ContactEntityImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'user_uid': instance.userUid,
+      'user_id': instance.userId,
       'email': instance.email,
       'name': instance.name,
       'phone_number': instance.phoneNumber,

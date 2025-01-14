@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_ledger/models/contact_model.dart';
 import 'package:shared_ledger/services/contacts_service.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class CreateOrEditContactViewModel {
   final ContactsService _contactsService;
@@ -39,7 +38,7 @@ class CreateOrEditContactViewModel {
     final createOrUpdate = switch (contact == null) {
       true => _contactsService.createContact(
           contact: Contact(
-            id: 0,
+            id: '',
             email: email,
             name: name,
             phoneNumber: phoneNumber,
@@ -61,9 +60,9 @@ class CreateOrEditContactViewModel {
       final context = formKey.currentContext;
       if (context == null || !context.mounted) return;
       final message = switch (error) {
-        PostgrestException(message: final message)
-            when message.contains('contacts_unique_email_per_user_uid') =>
-          'Contact with this email already exists',
+        // PostgrestException(message: final message)
+        //     when message.contains('contacts_unique_email_per_user_uid') =>
+        //   'Contact with this email already exists',
         _ => 'Failed to save contact',
       };
       ScaffoldMessenger.of(context).showSnackBar(

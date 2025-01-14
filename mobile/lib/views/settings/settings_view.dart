@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/views/settings/settings_viewmodel.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class SettingsView extends StatefulWidget {

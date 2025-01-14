@@ -20,11 +20,11 @@ Transaction _$TransactionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Transaction {
-  int get id => throw _privateConstructorUsedError;
-  int get ledgerId => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get ledgerId => throw _privateConstructorUsedError;
   Contact? get contact => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get created => throw _privateConstructorUsedError;
   DateTime get transactionAt => throw _privateConstructorUsedError;
   String? get comment => throw _privateConstructorUsedError;
 
@@ -45,11 +45,11 @@ abstract class $TransactionCopyWith<$Res> {
       _$TransactionCopyWithImpl<$Res, Transaction>;
   @useResult
   $Res call(
-      {int id,
-      int ledgerId,
+      {String id,
+      String ledgerId,
       Contact? contact,
       double amount,
-      DateTime createdAt,
+      DateTime created,
       DateTime transactionAt,
       String? comment});
 
@@ -75,7 +75,7 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
     Object? ledgerId = null,
     Object? contact = freezed,
     Object? amount = null,
-    Object? createdAt = null,
+    Object? created = null,
     Object? transactionAt = null,
     Object? comment = freezed,
   }) {
@@ -83,11 +83,11 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       ledgerId: null == ledgerId
           ? _value.ledgerId
           : ledgerId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       contact: freezed == contact
           ? _value.contact
           : contact // ignore: cast_nullable_to_non_nullable
@@ -96,9 +96,9 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      created: null == created
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
       transactionAt: null == transactionAt
           ? _value.transactionAt
@@ -135,11 +135,11 @@ abstract class _$$TransactionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      int ledgerId,
+      {String id,
+      String ledgerId,
       Contact? contact,
       double amount,
-      DateTime createdAt,
+      DateTime created,
       DateTime transactionAt,
       String? comment});
 
@@ -164,7 +164,7 @@ class __$$TransactionImplCopyWithImpl<$Res>
     Object? ledgerId = null,
     Object? contact = freezed,
     Object? amount = null,
-    Object? createdAt = null,
+    Object? created = null,
     Object? transactionAt = null,
     Object? comment = freezed,
   }) {
@@ -172,11 +172,11 @@ class __$$TransactionImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       ledgerId: null == ledgerId
           ? _value.ledgerId
           : ledgerId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       contact: freezed == contact
           ? _value.contact
           : contact // ignore: cast_nullable_to_non_nullable
@@ -185,9 +185,9 @@ class __$$TransactionImplCopyWithImpl<$Res>
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      created: null == created
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
       transactionAt: null == transactionAt
           ? _value.transactionAt
@@ -209,7 +209,7 @@ class _$TransactionImpl implements _Transaction {
       required this.ledgerId,
       required this.contact,
       required this.amount,
-      required this.createdAt,
+      required this.created,
       required this.transactionAt,
       this.comment});
 
@@ -217,15 +217,15 @@ class _$TransactionImpl implements _Transaction {
       _$$TransactionImplFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
-  final int ledgerId;
+  final String ledgerId;
   @override
   final Contact? contact;
   @override
   final double amount;
   @override
-  final DateTime createdAt;
+  final DateTime created;
   @override
   final DateTime transactionAt;
   @override
@@ -233,7 +233,7 @@ class _$TransactionImpl implements _Transaction {
 
   @override
   String toString() {
-    return 'Transaction(id: $id, ledgerId: $ledgerId, contact: $contact, amount: $amount, createdAt: $createdAt, transactionAt: $transactionAt, comment: $comment)';
+    return 'Transaction(id: $id, ledgerId: $ledgerId, contact: $contact, amount: $amount, created: $created, transactionAt: $transactionAt, comment: $comment)';
   }
 
   @override
@@ -246,8 +246,7 @@ class _$TransactionImpl implements _Transaction {
                 other.ledgerId == ledgerId) &&
             (identical(other.contact, contact) || other.contact == contact) &&
             (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
+            (identical(other.created, created) || other.created == created) &&
             (identical(other.transactionAt, transactionAt) ||
                 other.transactionAt == transactionAt) &&
             (identical(other.comment, comment) || other.comment == comment));
@@ -256,7 +255,7 @@ class _$TransactionImpl implements _Transaction {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, ledgerId, contact, amount,
-      createdAt, transactionAt, comment);
+      created, transactionAt, comment);
 
   /// Create a copy of Transaction
   /// with the given fields replaced by the non-null parameter values.
@@ -276,11 +275,11 @@ class _$TransactionImpl implements _Transaction {
 
 abstract class _Transaction implements Transaction {
   factory _Transaction(
-      {required final int id,
-      required final int ledgerId,
+      {required final String id,
+      required final String ledgerId,
       required final Contact? contact,
       required final double amount,
-      required final DateTime createdAt,
+      required final DateTime created,
       required final DateTime transactionAt,
       final String? comment}) = _$TransactionImpl;
 
@@ -288,15 +287,15 @@ abstract class _Transaction implements Transaction {
       _$TransactionImpl.fromJson;
 
   @override
-  int get id;
+  String get id;
   @override
-  int get ledgerId;
+  String get ledgerId;
   @override
   Contact? get contact;
   @override
   double get amount;
   @override
-  DateTime get createdAt;
+  DateTime get created;
   @override
   DateTime get transactionAt;
   @override

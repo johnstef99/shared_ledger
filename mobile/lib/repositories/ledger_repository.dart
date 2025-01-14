@@ -1,105 +1,101 @@
+import 'package:pocketbase/pocketbase.dart';
 import 'package:shared_ledger/app/utils.dart';
 import 'package:shared_ledger/entities/ledger_entity.dart';
 import 'package:shared_ledger/models/ledger_model.dart';
 import 'package:shared_ledger/services/auth_service.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' as supa;
 
 class LedgerRepository {
-  final supa.SupabaseClient _supabase;
+  final PocketBase _pb;
   final AuthService _authService;
 
   LedgerRepository({
-    required supa.SupabaseClient supabase,
+    required PocketBase pocketbase,
     required AuthService authService,
-  })  : _supabase = supabase,
+  })  : _pb = pocketbase,
         _authService = authService;
 
   Future<Ledger> createLedger(String name, String? description) async {
-    final data = await _supabase
-        .from('ledgers')
-        .insert({
-          'name': name,
-          'description': description.orNull,
-        })
-        .select()
-        .then((data) => LedgerEntity.fromJson(data.first));
+    final data = await _pb.collection('ledgers').create(body: {
+      'name': name,
+      'description': description.orNull,
+      'user_id': _authService.user.value.id,
+    }).then((rec) => LedgerEntity.fromJson(rec.toJson()));
 
-    return Ledger.fromEntity(data, _authService.user.value.uid);
+    return Ledger.fromEntity(data, _authService.user.value.id);
   }
 
   Future<Ledger> updateLedger(Ledger ledger) async {
-    return await _supabase
-        .from('ledgers')
-        .update({
+    return await _pb
+        .collection('ledgers')
+        .update(ledger.id, body: {
           'name': ledger.name,
           'description': ledger.description.orNull,
         })
-        .eq('id', ledger.id)
-        .select()
-        .then((data) => LedgerEntity.fromJson(data.first))
-        .then((data) => Ledger.fromEntity(data, _authService.user.value.uid));
+        .then((rec) => LedgerEntity.fromJson(rec.toJson()))
+        .then((data) => Ledger.fromEntity(data, _authService.user.value.id));
   }
 
   Future<List<Ledger>> getLedgers() async {
-    final data = await _supabase
-        .from('ledgers')
-        .select()
-        .eq('user_uid', _authService.user.value.uid)
-        .order('created_at', ascending: false)
-        .then((data) => data.map(LedgerEntity.fromJson));
-
-    return data
-        .map((l) => Ledger.fromEntity(l, _authService.user.value.uid))
-        .toList();
+    return await _pb
+        .collection('ledgers')
+        .getFullList(
+          sort: '-created',
+          filter: 'user_id = "${_authService.user.value.id}"',
+        )
+        .then((list) => list
+            .map((led) => Ledger.fromEntity(LedgerEntity.fromJson(led.toJson()),
+                _authService.user.value.id))
+            .toList());
   }
 
   Future<void> deleteLedger(Ledger ledger) async {
-    await _supabase.from('ledgers').delete().eq('id', ledger.id);
+    await _pb.collection('ledgers').delete(ledger.id);
   }
 
   Future<List<Ledger>> getSharedWithMeLedgers() async {
-    final data = await _supabase
-        .rpc('get_ledgers_by_email', params: {
-          'email_address': _authService.user.value.email,
-        })
-        .select()
-        .then((data) => data.map(LedgerEntity.fromJson));
-
-    return data
-        .map((l) => Ledger.fromEntity(l, _authService.user.value.uid))
-        .toList();
+    return await _pb
+        .collection('ledgers')
+        .getFullList(
+          filter: 'user_id != "${_authService.user.value.id}"',
+        )
+        .then((list) => list
+            .map((led) => Ledger.fromEntity(LedgerEntity.fromJson(led.toJson()),
+                _authService.user.value.id))
+            .toList());
   }
 
-  Future<Ledger> getLedger(int id) async {
-    final data = await _supabase
-        .from('ledgers')
-        .select()
-        .eq('id', id)
-        .then((data) => LedgerEntity.fromJson(data.first));
-
-    return Ledger.fromEntity(data, _authService.user.value.uid);
+  Future<Ledger> getLedger(String id) async {
+    return await _pb.collection('ledgers').getOne(id).then(
+          (led) => Ledger.fromEntity(
+              LedgerEntity.fromJson(led.toJson()), _authService.user.value.id),
+        );
   }
 
-  Future<List<String>> getSharedEmails(int ledgerId) async {
-    return await _supabase
-        .from('ledgers_users')
-        .select('user_email')
-        .eq('ledger_id', ledgerId)
-        .then((data) => data.map((e) => e['user_email'] as String).toList());
+  Future<List<String>> getSharedEmails(String ledgerId) async {
+    return await _pb
+        .collection('ledgers_users')
+        .getFullList(
+          filter: 'ledger_id = "$ledgerId"',
+        )
+        .then(
+            (list) => list.map((e) => e.getStringValue('user_email')).toList());
   }
 
-  Future<void> addSharedEmail(int id, String email) async {
-    await _supabase.from('ledgers_users').insert({
+  Future<void> addSharedEmail(String id, String email) async {
+    await _pb.collection('ledgers_users').create(body: {
       'ledger_id': id,
       'user_email': email,
     });
   }
 
-  Future<void> removeSharedEmail(int id, String email) async {
-    await _supabase
-        .from('ledgers_users')
-        .delete()
-        .eq('ledger_id', id)
-        .eq('user_email', email);
+  Future<void> removeSharedEmail(String ledgerId, String email) async {
+    final id = await _pb
+        .collection('ledgers_users')
+        .getFirstListItem(
+          'ledger_id = "$ledgerId" && user_email = "$email"',
+        )
+        .then((e) => e.id);
+
+    await _pb.collection('ledgers_users').delete(id);
   }
 }

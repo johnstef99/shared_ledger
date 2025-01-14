@@ -67,9 +67,9 @@ extension on List<Transaction> {
       TransactionSort.transactionAtAsc => sortedBy((t) => t.transactionAt),
       TransactionSort.transactionAtDesc =>
         sortedBy((t) => t.transactionAt).reversed.toList(),
-      TransactionSort.createdAtAsc => sortedBy((t) => t.createdAt),
+      TransactionSort.createdAtAsc => sortedBy((t) => t.created),
       TransactionSort.createdAtDesc =>
-        sortedBy((t) => t.createdAt).reversed.toList(),
+        sortedBy((t) => t.created).reversed.toList(),
     };
   }
 }

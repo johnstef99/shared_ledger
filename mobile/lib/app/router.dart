@@ -58,16 +58,14 @@ GoRouter generateRouter() => GoRouter(
                     GoRoute(
                       path: '/:ledgerId',
                       redirect: (context, state) {
-                        final ledgerId =
-                            int.tryParse(state.pathParameters['ledgerId']!);
-                        if (ledgerId == null) {
+                        final ledgerId = state.pathParameters['ledgerId'];
+                        if (ledgerId == null || ledgerId.isEmpty) {
                           return '/ledgers';
                         }
                         return null;
                       },
                       builder: (context, state) {
-                        final ledgerId =
-                            int.parse(state.pathParameters['ledgerId']!);
+                        final ledgerId = state.pathParameters['ledgerId']!;
                         final model = switch (state.extra) {
                           Ledger l => l,
                           _ => null,
@@ -78,8 +76,7 @@ GoRouter generateRouter() => GoRouter(
                         GoRoute(
                           path: '/edit',
                           builder: (context, state) {
-                            final ledgerId =
-                                int.parse(state.pathParameters['ledgerId']!);
+                            final ledgerId = state.pathParameters['ledgerId']!;
                             final ledger = switch (state.extra) {
                               Ledger l => l,
                               _ => null,
@@ -92,8 +89,7 @@ GoRouter generateRouter() => GoRouter(
                         GoRoute(
                           path: '/share',
                           builder: (context, state) {
-                            final ledgerId =
-                                int.parse(state.pathParameters['ledgerId']!);
+                            final ledgerId = state.pathParameters['ledgerId']!;
                             final ledger = switch (state.extra) {
                               Ledger l => l,
                               _ => null,
@@ -106,8 +102,7 @@ GoRouter generateRouter() => GoRouter(
                         GoRoute(
                           path: '/transactions/create',
                           builder: (context, state) {
-                            final ledgerId =
-                                int.parse(state.pathParameters['ledgerId']!);
+                            final ledgerId = state.pathParameters['ledgerId']!;
                             return TransactionCreateOrEditView(
                               ledgerId: ledgerId,
                             );
@@ -116,19 +111,19 @@ GoRouter generateRouter() => GoRouter(
                         GoRoute(
                           path: '/transactions/:transactionId/edit',
                           redirect: (context, state) {
-                            final ledgerId =
-                                int.parse(state.pathParameters['ledgerId']!);
-                            final transactionId = int.tryParse(
-                              state.pathParameters['transactionId']!,
-                            );
-                            if (transactionId == null) {
+                            final ledgerId = state.pathParameters['ledgerId'];
+
+                            final transactionId =
+                                state.pathParameters['transactionId'];
+
+                            if (transactionId == null ||
+                                transactionId.isEmpty) {
                               return '/ledgers/$ledgerId';
                             }
                             return null;
                           },
                           builder: (context, state) {
-                            final ledgerId =
-                                int.parse(state.pathParameters['ledgerId']!);
+                            final ledgerId = state.pathParameters['ledgerId']!;
 
                             final transaction = state.extra;
                             if (transaction is Transaction) {
@@ -138,9 +133,8 @@ GoRouter generateRouter() => GoRouter(
                               );
                             }
 
-                            final transactionId = int.parse(
-                              state.pathParameters['transactionId']!,
-                            );
+                            final transactionId =
+                                state.pathParameters['transactionId']!;
 
                             return Scaffold(
                               body: FutureBuilder(
@@ -198,10 +192,9 @@ GoRouter generateRouter() => GoRouter(
                     GoRoute(
                       path: '/:contactId/edit',
                       redirect: (context, state) {
-                        final contactId = int.tryParse(
-                          state.pathParameters['contactId']!,
-                        );
-                        if (contactId == null) {
+                        final contactId = state.pathParameters['contactId'];
+
+                        if (contactId == null || contactId.isEmpty) {
                           return '/contacts';
                         }
                         return null;
@@ -213,9 +206,7 @@ GoRouter generateRouter() => GoRouter(
                           return ContactCreateOrEditView(contact: contact);
                         }
 
-                        final contactId = int.parse(
-                          state.pathParameters['contactId']!,
-                        );
+                        final contactId = state.pathParameters['contactId']!;
 
                         return Scaffold(
                           body: FutureBuilder(

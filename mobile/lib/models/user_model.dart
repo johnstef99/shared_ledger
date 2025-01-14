@@ -1,23 +1,30 @@
-import 'package:supabase_flutter/supabase_flutter.dart' as supa;
+import 'package:pocketbase/pocketbase.dart';
 
 class User {
-  final String uid;
+  final String id;
   final String email;
 
-  const User({required this.uid, required this.email});
+  const User({required this.id, required this.email});
 
   const User.empty()
-      : uid = '',
+      : id = '',
         email = '';
 
-  static User fromSupabaseUser(supa.User user) {
+  // static User fromSupabaseUser(supa.User user) {
+  //   return User(
+  //     uid: user.id,
+  //     email: user.email!,
+  //   );
+  // }
+
+  bool get isEmpty => id.isEmpty;
+
+  bool get isNotEmpty => id.isNotEmpty;
+
+  static User fromRecord(RecordModel record, {String? avatar}) {
     return User(
-      uid: user.id,
-      email: user.email!,
+      id: record.id,
+      email: record.getStringValue('email'),
     );
   }
-
-  bool get isEmpty => uid.isEmpty;
-
-  bool get isNotEmpty => uid.isNotEmpty;
 }

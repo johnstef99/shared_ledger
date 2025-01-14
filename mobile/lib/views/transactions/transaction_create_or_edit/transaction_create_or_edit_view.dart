@@ -17,7 +17,7 @@ class TransactionCreateOrEditView extends StatefulWidget {
     required this.ledgerId,
   });
 
-  final int ledgerId;
+  final String ledgerId;
   final Transaction? transaction;
 
   @override

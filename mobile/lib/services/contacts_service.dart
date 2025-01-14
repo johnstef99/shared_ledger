@@ -51,7 +51,7 @@ class ContactsService {
     await loadContacts();
   }
 
-  Future<Contact> getContact(int id) {
+  Future<Contact> getContact(String id) {
     return _contactsRepository.getContact(id);
   }
 }

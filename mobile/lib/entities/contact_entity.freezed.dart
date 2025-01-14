@@ -20,8 +20,8 @@ ContactEntity _$ContactEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ContactEntity {
-  int get id => throw _privateConstructorUsedError;
-  String get userUid => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
@@ -43,8 +43,8 @@ abstract class $ContactEntityCopyWith<$Res> {
       _$ContactEntityCopyWithImpl<$Res, ContactEntity>;
   @useResult
   $Res call(
-      {int id,
-      String userUid,
+      {String id,
+      String userId,
       String? email,
       String name,
       String? phoneNumber});
@@ -66,7 +66,7 @@ class _$ContactEntityCopyWithImpl<$Res, $Val extends ContactEntity>
   @override
   $Res call({
     Object? id = null,
-    Object? userUid = null,
+    Object? userId = null,
     Object? email = freezed,
     Object? name = null,
     Object? phoneNumber = freezed,
@@ -75,10 +75,10 @@ class _$ContactEntityCopyWithImpl<$Res, $Val extends ContactEntity>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      userUid: null == userUid
-          ? _value.userUid
-          : userUid // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
       email: freezed == email
           ? _value.email
@@ -105,8 +105,8 @@ abstract class _$$ContactEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String userUid,
+      {String id,
+      String userId,
       String? email,
       String name,
       String? phoneNumber});
@@ -126,7 +126,7 @@ class __$$ContactEntityImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? userUid = null,
+    Object? userId = null,
     Object? email = freezed,
     Object? name = null,
     Object? phoneNumber = freezed,
@@ -135,10 +135,10 @@ class __$$ContactEntityImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      userUid: null == userUid
-          ? _value.userUid
-          : userUid // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
       email: freezed == email
           ? _value.email
@@ -161,7 +161,7 @@ class __$$ContactEntityImplCopyWithImpl<$Res>
 class _$ContactEntityImpl implements _ContactEntity {
   const _$ContactEntityImpl(
       {required this.id,
-      required this.userUid,
+      required this.userId,
       required this.email,
       required this.name,
       required this.phoneNumber});
@@ -170,9 +170,9 @@ class _$ContactEntityImpl implements _ContactEntity {
       _$$ContactEntityImplFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
-  final String userUid;
+  final String userId;
   @override
   final String? email;
   @override
@@ -182,7 +182,7 @@ class _$ContactEntityImpl implements _ContactEntity {
 
   @override
   String toString() {
-    return 'ContactEntity(id: $id, userUid: $userUid, email: $email, name: $name, phoneNumber: $phoneNumber)';
+    return 'ContactEntity(id: $id, userId: $userId, email: $email, name: $name, phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -191,7 +191,7 @@ class _$ContactEntityImpl implements _ContactEntity {
         (other.runtimeType == runtimeType &&
             other is _$ContactEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.userUid, userUid) || other.userUid == userUid) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.phoneNumber, phoneNumber) ||
@@ -201,7 +201,7 @@ class _$ContactEntityImpl implements _ContactEntity {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, userUid, email, name, phoneNumber);
+      Object.hash(runtimeType, id, userId, email, name, phoneNumber);
 
   /// Create a copy of ContactEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -221,8 +221,8 @@ class _$ContactEntityImpl implements _ContactEntity {
 
 abstract class _ContactEntity implements ContactEntity {
   const factory _ContactEntity(
-      {required final int id,
-      required final String userUid,
+      {required final String id,
+      required final String userId,
       required final String? email,
       required final String name,
       required final String? phoneNumber}) = _$ContactEntityImpl;
@@ -231,9 +231,9 @@ abstract class _ContactEntity implements ContactEntity {
       _$ContactEntityImpl.fromJson;
 
   @override
-  int get id;
+  String get id;
   @override
-  String get userUid;
+  String get userId;
   @override
   String? get email;
   @override

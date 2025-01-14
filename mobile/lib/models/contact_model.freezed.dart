@@ -20,7 +20,7 @@ Contact _$ContactFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Contact {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $ContactCopyWith<$Res> {
   factory $ContactCopyWith(Contact value, $Res Function(Contact) then) =
       _$ContactCopyWithImpl<$Res, Contact>;
   @useResult
-  $Res call({int id, String? email, String name, String? phoneNumber});
+  $Res call({String id, String? email, String name, String? phoneNumber});
 }
 
 /// @nodoc
@@ -66,7 +66,7 @@ class _$ContactCopyWithImpl<$Res, $Val extends Contact>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -90,7 +90,7 @@ abstract class _$$ContactImplCopyWith<$Res> implements $ContactCopyWith<$Res> {
       __$$ContactImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String? email, String name, String? phoneNumber});
+  $Res call({String id, String? email, String name, String? phoneNumber});
 }
 
 /// @nodoc
@@ -115,7 +115,7 @@ class __$$ContactImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -146,7 +146,7 @@ class _$ContactImpl extends _Contact {
       _$$ContactImplFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
   final String? email;
   @override
@@ -193,7 +193,7 @@ class _$ContactImpl extends _Contact {
 
 abstract class _Contact extends Contact {
   const factory _Contact(
-      {required final int id,
+      {required final String id,
       required final String? email,
       required final String name,
       required final String? phoneNumber}) = _$ContactImpl;
@@ -202,7 +202,7 @@ abstract class _Contact extends Contact {
   factory _Contact.fromJson(Map<String, dynamic> json) = _$ContactImpl.fromJson;
 
   @override
-  int get id;
+  String get id;
   @override
   String? get email;
   @override

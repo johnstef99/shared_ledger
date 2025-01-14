@@ -20,11 +20,11 @@ TransactionEntity _$TransactionEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TransactionEntity {
-  int get id => throw _privateConstructorUsedError;
-  int get ledgerId => throw _privateConstructorUsedError;
-  int? get contactId => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get ledgerId => throw _privateConstructorUsedError;
+  String? get contactId => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get created => throw _privateConstructorUsedError;
   DateTime get transactionAt => throw _privateConstructorUsedError;
   String? get comment => throw _privateConstructorUsedError;
 
@@ -45,11 +45,11 @@ abstract class $TransactionEntityCopyWith<$Res> {
       _$TransactionEntityCopyWithImpl<$Res, TransactionEntity>;
   @useResult
   $Res call(
-      {int id,
-      int ledgerId,
-      int? contactId,
+      {String id,
+      String ledgerId,
+      String? contactId,
       double amount,
-      DateTime createdAt,
+      DateTime created,
       DateTime transactionAt,
       String? comment});
 }
@@ -73,7 +73,7 @@ class _$TransactionEntityCopyWithImpl<$Res, $Val extends TransactionEntity>
     Object? ledgerId = null,
     Object? contactId = freezed,
     Object? amount = null,
-    Object? createdAt = null,
+    Object? created = null,
     Object? transactionAt = null,
     Object? comment = freezed,
   }) {
@@ -81,22 +81,22 @@ class _$TransactionEntityCopyWithImpl<$Res, $Val extends TransactionEntity>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       ledgerId: null == ledgerId
           ? _value.ledgerId
           : ledgerId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       contactId: freezed == contactId
           ? _value.contactId
           : contactId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      created: null == created
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
       transactionAt: null == transactionAt
           ? _value.transactionAt
@@ -119,11 +119,11 @@ abstract class _$$TransactionEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      int ledgerId,
-      int? contactId,
+      {String id,
+      String ledgerId,
+      String? contactId,
       double amount,
-      DateTime createdAt,
+      DateTime created,
       DateTime transactionAt,
       String? comment});
 }
@@ -145,7 +145,7 @@ class __$$TransactionEntityImplCopyWithImpl<$Res>
     Object? ledgerId = null,
     Object? contactId = freezed,
     Object? amount = null,
-    Object? createdAt = null,
+    Object? created = null,
     Object? transactionAt = null,
     Object? comment = freezed,
   }) {
@@ -153,22 +153,22 @@ class __$$TransactionEntityImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       ledgerId: null == ledgerId
           ? _value.ledgerId
           : ledgerId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       contactId: freezed == contactId
           ? _value.contactId
           : contactId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      created: null == created
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
       transactionAt: null == transactionAt
           ? _value.transactionAt
@@ -190,7 +190,7 @@ class _$TransactionEntityImpl implements _TransactionEntity {
       required this.ledgerId,
       required this.contactId,
       required this.amount,
-      required this.createdAt,
+      required this.created,
       required this.transactionAt,
       this.comment});
 
@@ -198,15 +198,15 @@ class _$TransactionEntityImpl implements _TransactionEntity {
       _$$TransactionEntityImplFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
-  final int ledgerId;
+  final String ledgerId;
   @override
-  final int? contactId;
+  final String? contactId;
   @override
   final double amount;
   @override
-  final DateTime createdAt;
+  final DateTime created;
   @override
   final DateTime transactionAt;
   @override
@@ -214,7 +214,7 @@ class _$TransactionEntityImpl implements _TransactionEntity {
 
   @override
   String toString() {
-    return 'TransactionEntity(id: $id, ledgerId: $ledgerId, contactId: $contactId, amount: $amount, createdAt: $createdAt, transactionAt: $transactionAt, comment: $comment)';
+    return 'TransactionEntity(id: $id, ledgerId: $ledgerId, contactId: $contactId, amount: $amount, created: $created, transactionAt: $transactionAt, comment: $comment)';
   }
 
   @override
@@ -228,8 +228,7 @@ class _$TransactionEntityImpl implements _TransactionEntity {
             (identical(other.contactId, contactId) ||
                 other.contactId == contactId) &&
             (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
+            (identical(other.created, created) || other.created == created) &&
             (identical(other.transactionAt, transactionAt) ||
                 other.transactionAt == transactionAt) &&
             (identical(other.comment, comment) || other.comment == comment));
@@ -238,7 +237,7 @@ class _$TransactionEntityImpl implements _TransactionEntity {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, ledgerId, contactId, amount,
-      createdAt, transactionAt, comment);
+      created, transactionAt, comment);
 
   /// Create a copy of TransactionEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -259,11 +258,11 @@ class _$TransactionEntityImpl implements _TransactionEntity {
 
 abstract class _TransactionEntity implements TransactionEntity {
   factory _TransactionEntity(
-      {required final int id,
-      required final int ledgerId,
-      required final int? contactId,
+      {required final String id,
+      required final String ledgerId,
+      required final String? contactId,
       required final double amount,
-      required final DateTime createdAt,
+      required final DateTime created,
       required final DateTime transactionAt,
       final String? comment}) = _$TransactionEntityImpl;
 
@@ -271,15 +270,15 @@ abstract class _TransactionEntity implements TransactionEntity {
       _$TransactionEntityImpl.fromJson;
 
   @override
-  int get id;
+  String get id;
   @override
-  int get ledgerId;
+  String get ledgerId;
   @override
-  int? get contactId;
+  String? get contactId;
   @override
   double get amount;
   @override
-  DateTime get createdAt;
+  DateTime get created;
   @override
   DateTime get transactionAt;
   @override

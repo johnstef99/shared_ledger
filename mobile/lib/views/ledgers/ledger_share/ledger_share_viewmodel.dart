@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_ledger/app/utils.dart';
 import 'package:shared_ledger/models/ledger_model.dart';
 import 'package:shared_ledger/repositories/ledger_repository.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LedgerShareViewModel {
   final LedgerRepository _ledgerRepo;
@@ -51,18 +50,20 @@ class LedgerShareViewModel {
   }) async {
     await _ledgerRepo.addSharedEmail(ledger.id, email).then((_) {
       sharedEmails.value = [...sharedEmails.value..add(email)];
-    }).onError<PostgrestException>((e, _) {
-      if (e.code == '23505') {
-        if (!context.mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(tr('ledger_share_view.email_already_shared')),
-          ),
-        );
-      } else {
-        throw e;
-      }
-    }).catchError((e, _) {
+    })
+        // .onError<PostgrestException>((e, _) {
+        //   if (e.code == '23505') {
+        //     if (!context.mounted) return;
+        //     ScaffoldMessenger.of(context).showSnackBar(
+        //       SnackBar(
+        //         content: Text(tr('ledger_share_view.email_already_shared')),
+        //       ),
+        //     );
+        //   } else {
+        //     throw e;
+        //   }
+        // })
+        .catchError((e, _) {
       if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

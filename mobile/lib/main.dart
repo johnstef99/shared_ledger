@@ -2,17 +2,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pocketbase/pocketbase.dart';
 import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/app/router.dart';
 import 'package:shared_ledger/app/theme.dart';
+import 'package:shared_ledger/pocketbase.dart';
 import 'package:shared_ledger/repositories/contacts_repository.dart';
 import 'package:shared_ledger/repositories/ledger_repository.dart';
 import 'package:shared_ledger/repositories/transactions_repository.dart';
 import 'package:shared_ledger/services/auth_service.dart';
 import 'package:shared_ledger/services/contacts_service.dart';
-import 'package:shared_ledger/supabase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import "package:universal_html/html.dart" as html;
 
 final isPwa =
@@ -24,11 +24,6 @@ late final SharedPreferences prefs;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await Supabase.initialize(
-    url: supabaseUrl,
-    anonKey: supabaseAnonKey,
-  );
 
   await EasyLocalization.ensureInitialized();
 
@@ -57,14 +52,23 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    final supabase = Supabase.instance.client;
-    authService = AuthService(supabase: Supabase.instance.client);
+    final store = AsyncAuthStore(
+      save: (String data) async => prefs.setString('pb_auth', data),
+      initial: prefs.getString('pb_auth'),
+    );
+
+    final pb = PocketBase(
+      pocketbaseUrl,
+      authStore: store,
+    );
+
+    authService = AuthService(pocketbase: pb);
     ledgerRepo = LedgerRepository(
-      supabase: supabase,
+      pocketbase: pb,
       authService: authService,
     );
     contactsRepo = ContactsRepository(
-      supabase: supabase,
+      pocketbase: pb,
       authService: authService,
     );
     contactsService = ContactsService(
@@ -72,7 +76,7 @@ class _MyAppState extends State<MyApp> {
       authService: authService,
     );
     transactionsRepo = TransactionsRepository(
-      supabase: supabase,
+      pocketbase: pb,
     );
     themeModeNotifier = ThemeModeNotifier(
       prefs: prefs,

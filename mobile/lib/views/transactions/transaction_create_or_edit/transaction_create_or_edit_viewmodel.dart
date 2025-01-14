@@ -11,7 +11,7 @@ class TransactionCreateOrEditViewModel {
   final GoRouter _router;
   final ContactsService _contactsService;
 
-  final int ledgerId;
+  final String ledgerId;
   final Transaction? transaction;
 
   double? amount;

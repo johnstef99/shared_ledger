@@ -20,10 +20,10 @@ LedgerEntity _$LedgerEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LedgerEntity {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get userUid => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
+  DateTime get created => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
 
   /// Serializes this LedgerEntity to a JSON map.
@@ -43,10 +43,10 @@ abstract class $LedgerEntityCopyWith<$Res> {
       _$LedgerEntityCopyWithImpl<$Res, LedgerEntity>;
   @useResult
   $Res call(
-      {int id,
+      {String id,
       String name,
-      String userUid,
-      DateTime createdAt,
+      String userId,
+      DateTime created,
       String? description});
 }
 
@@ -67,26 +67,26 @@ class _$LedgerEntityCopyWithImpl<$Res, $Val extends LedgerEntity>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? userUid = null,
-    Object? createdAt = null,
+    Object? userId = null,
+    Object? created = null,
     Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      userUid: null == userUid
-          ? _value.userUid
-          : userUid // ignore: cast_nullable_to_non_nullable
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      created: null == created
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
       description: freezed == description
           ? _value.description
@@ -105,10 +105,10 @@ abstract class _$$LedgerEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {String id,
       String name,
-      String userUid,
-      DateTime createdAt,
+      String userId,
+      DateTime created,
       String? description});
 }
 
@@ -127,26 +127,26 @@ class __$$LedgerEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? userUid = null,
-    Object? createdAt = null,
+    Object? userId = null,
+    Object? created = null,
     Object? description = freezed,
   }) {
     return _then(_$LedgerEntityImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      userUid: null == userUid
-          ? _value.userUid
-          : userUid // ignore: cast_nullable_to_non_nullable
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      created: null == created
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
       description: freezed == description
           ? _value.description
@@ -162,27 +162,27 @@ class _$LedgerEntityImpl implements _LedgerEntity {
   const _$LedgerEntityImpl(
       {required this.id,
       required this.name,
-      required this.userUid,
-      required this.createdAt,
+      required this.userId,
+      required this.created,
       required this.description});
 
   factory _$LedgerEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$LedgerEntityImplFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
   final String name;
   @override
-  final String userUid;
+  final String userId;
   @override
-  final DateTime createdAt;
+  final DateTime created;
   @override
   final String? description;
 
   @override
   String toString() {
-    return 'LedgerEntity(id: $id, name: $name, userUid: $userUid, createdAt: $createdAt, description: $description)';
+    return 'LedgerEntity(id: $id, name: $name, userId: $userId, created: $created, description: $description)';
   }
 
   @override
@@ -192,9 +192,8 @@ class _$LedgerEntityImpl implements _LedgerEntity {
             other is _$LedgerEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.userUid, userUid) || other.userUid == userUid) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.created, created) || other.created == created) &&
             (identical(other.description, description) ||
                 other.description == description));
   }
@@ -202,7 +201,7 @@ class _$LedgerEntityImpl implements _LedgerEntity {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, userUid, createdAt, description);
+      Object.hash(runtimeType, id, name, userId, created, description);
 
   /// Create a copy of LedgerEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -222,23 +221,23 @@ class _$LedgerEntityImpl implements _LedgerEntity {
 
 abstract class _LedgerEntity implements LedgerEntity {
   const factory _LedgerEntity(
-      {required final int id,
+      {required final String id,
       required final String name,
-      required final String userUid,
-      required final DateTime createdAt,
+      required final String userId,
+      required final DateTime created,
       required final String? description}) = _$LedgerEntityImpl;
 
   factory _LedgerEntity.fromJson(Map<String, dynamic> json) =
       _$LedgerEntityImpl.fromJson;
 
   @override
-  int get id;
+  String get id;
   @override
   String get name;
   @override
-  String get userUid;
+  String get userId;
   @override
-  DateTime get createdAt;
+  DateTime get created;
   @override
   String? get description;
 
