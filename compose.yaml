@@ -1,0 +1,10 @@
+services:
+  app:
+    image: shared-ledger-backend
+    ports:
+      - 8090:8090
+    volumes:
+      - db_data:/app/pb_data
+
+volumes:
+  db_data:
