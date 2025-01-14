@@ -1,10 +1,14 @@
 services:
   app:
-    image: shared-ledger-backend
+    image: shared-ledger:v1.0.0
+    build: .
     ports:
       - 8090:8090
     volumes:
       - db_data:/app/pb_data
+    deploy:
+      update_config:
+        order: start-first
 
 volumes:
   db_data:
