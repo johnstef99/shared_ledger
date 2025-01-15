@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:shared_ledger/app/app.dart';
 import 'package:shared_ledger/app/router.dart';
@@ -22,12 +23,16 @@ final isWebiOS = kIsWeb &&
 
 late final SharedPreferences prefs;
 
+late final PackageInfo packageInfo;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await EasyLocalization.ensureInitialized();
 
   prefs = await SharedPreferences.getInstance();
+
+  packageInfo = await PackageInfo.fromPlatform();
 
   runApp(const MyApp());
 }

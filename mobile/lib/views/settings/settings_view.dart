@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart' as ez;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_ledger/app/app.dart';
+import 'package:shared_ledger/main.dart';
 import 'package:shared_ledger/views/settings/settings_viewmodel.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -88,11 +89,24 @@ class _SettingsViewState extends State<SettingsView> {
           child: Container(
             padding: const EdgeInsets.all(16),
             alignment: Alignment.bottomCenter,
-            child: OutlinedButton(
-              onPressed: () {
-                launchUrlString('https://donate.stripe.com/4gwg1le8U3fz9203cc');
-              },
-              child: Text(ez.tr('donate_to_developer')),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                OutlinedButton(
+                  onPressed: () {
+                    launchUrlString(
+                        'https://donate.stripe.com/4gwg1le8U3fz9203cc');
+                  },
+                  child: Text(ez.tr('donate_to_developer')),
+                ),
+                Text(
+                  '${packageInfo.version} (${packageInfo.buildNumber})',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 10,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
