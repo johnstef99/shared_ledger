@@ -12,6 +12,7 @@ class SettingsViewModel {
   Future<void> logout() async {
     if (isLoggingOut.value) return;
     isLoggingOut.value = true;
-    await _authService.logout().whenComplete(() => isLoggingOut.value = false);
+    _authService.logout;
+    isLoggingOut.value = false;
   }
 }

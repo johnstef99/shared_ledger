@@ -12,12 +12,16 @@ class AuthService {
     final isValid = _pb.authStore.isValid;
     if (hasUserStored && isValid) {
       _onUserUpdate(_pb.authStore.record!);
-      _pb.collection('users').authRefresh();
+      _pb
+          .collection('users')
+          .authRefresh()
+          .then<void>((_) {})
+          .onError<ClientException>((e, _) => logout());
     }
     _pb.authStore.onChange.listen(onAuthChange);
   }
 
-  void onAuthChange(event) {
+  void onAuthChange(AuthStoreEvent event) {
     if (event.record != null) {
       _pb.collection('users').subscribe(event.record!.id, _onUserRecordUpdate);
       _onUserUpdate(event.record!);
@@ -45,7 +49,7 @@ class AuthService {
     });
   }
 
-  Future<void> logout() async {
+  void logout() async {
     _pb.authStore.clear();
     user.value = User.empty();
   }
