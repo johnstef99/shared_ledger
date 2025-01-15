@@ -1,6 +1,6 @@
 services:
   app:
-    image: shared-ledger:v1.0.0
+    image: shared-ledger:${IMAGE_HASH:-latest}
     build: .
     ports:
       - 8090:8090
