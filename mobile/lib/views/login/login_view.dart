@@ -57,7 +57,7 @@ class _LoginViewState extends State<LoginView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                     Text(
+                    Text(
                       tr('app_name'),
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
