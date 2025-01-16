@@ -21,7 +21,8 @@ class TransactionsView extends StatefulWidget {
 }
 
 class _TransactionsViewState extends State<TransactionsView> {
-  late TransactionsViewModel model;
+  TransactionsViewModel? _model;
+  TransactionsViewModel get model => _model!;
 
   @override
   void initState() {
@@ -32,14 +33,15 @@ class _TransactionsViewState extends State<TransactionsView> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    model = TransactionsViewModel(
+    if (_model != null) return;
+    _model = TransactionsViewModel(
       ledgerRepo: context.app.ledgerRepo,
       transactionsRepo: context.app.transactionsRepo,
       ledgerOrId: widget.ledger,
       router: GoRouter.of(context),
       contactsService: context.app.contactsService,
     );
-    model.init();
+    _model!.init();
   }
 
   @override

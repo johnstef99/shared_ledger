@@ -21,13 +21,15 @@ class ContactCreateOrEditView extends StatefulWidget {
 }
 
 class _ContactCreateOrEditViewState extends State<ContactCreateOrEditView> {
-  late CreateOrEditContactViewModel model;
+  CreateOrEditContactViewModel? _model;
+  CreateOrEditContactViewModel get model => _model!;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    model = CreateOrEditContactViewModel(
+    if (_model != null) return;
+    _model = CreateOrEditContactViewModel(
       contactsService: context.app.contactsService,
       router: GoRouter.of(context),
       contact: widget.contact,

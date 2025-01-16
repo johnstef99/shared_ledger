@@ -14,18 +14,21 @@ class ContactsView extends StatefulWidget {
 }
 
 class _ContactsViewState extends State<ContactsView> {
-  late ContactsViewModel model;
+  ContactsViewModel? _model;
+  ContactsViewModel get model => _model!;
 
   static String tr(String key) => ez.tr('contacts_view.$key');
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    model = ContactsViewModel(
+
+    if (_model != null) return;
+    _model = ContactsViewModel(
       contactsService: context.app.contactsService,
       router: GoRouter.of(context),
     );
-    model.init();
+    _model!.init();
   }
 
   @override

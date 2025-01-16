@@ -16,7 +16,8 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  late LoginViewModel model;
+  LoginViewModel? _model;
+  LoginViewModel get model => _model!;
 
   @override
   void initState() {
@@ -26,7 +27,9 @@ class _LoginViewState extends State<LoginView> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    model = LoginViewModel(authService: context.app.authService);
+
+    if (_model != null) return;
+    _model = LoginViewModel(authService: context.app.authService);
   }
 
   @override

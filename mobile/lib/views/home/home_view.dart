@@ -14,13 +14,15 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  late HomeViewModel model;
+  HomeViewModel? _model;
+  HomeViewModel get model => _model!;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    model = HomeViewModel(authService: context.app.authService);
+    if (_model != null) return;
+    _model = HomeViewModel(authService: context.app.authService);
   }
 
   @override

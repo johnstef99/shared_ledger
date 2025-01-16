@@ -14,14 +14,17 @@ class SettingsView extends StatefulWidget {
 }
 
 class _SettingsViewState extends State<SettingsView> {
-  late SettingsViewModel model;
+  SettingsViewModel? _model;
+  SettingsViewModel get model => _model!;
 
   static String tr(String key) => ez.tr('settings_view.$key');
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    model = SettingsViewModel(authService: context.app.authService);
+
+    if (_model != null) return;
+    _model = SettingsViewModel(authService: context.app.authService);
   }
 
   @override

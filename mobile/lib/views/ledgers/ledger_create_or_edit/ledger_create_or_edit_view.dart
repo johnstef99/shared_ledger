@@ -18,7 +18,8 @@ class LedgerCreateOrEditView extends StatefulWidget {
 }
 
 class _LedgerCreateOrEditViewState extends State<LedgerCreateOrEditView> {
-  late LedgerCreateOrEditViewModel model;
+  LedgerCreateOrEditViewModel? _model;
+  LedgerCreateOrEditViewModel get model => _model!;
 
   static String tr(String key) => ez.tr('ledger_create_or_edit_view.$key');
 
@@ -30,7 +31,9 @@ class _LedgerCreateOrEditViewState extends State<LedgerCreateOrEditView> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    model = LedgerCreateOrEditViewModel(
+
+    if (_model != null) return;
+    _model = LedgerCreateOrEditViewModel(
       router: GoRouter.of(context),
       ledgerOrId: widget.ledgerOrId,
       ledgerRepo: context.app.ledgerRepo,

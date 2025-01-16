@@ -27,21 +27,24 @@ class TransactionCreateOrEditView extends StatefulWidget {
 
 class _TransactionCreateOrEditViewState
     extends State<TransactionCreateOrEditView> {
-  late TransactionCreateOrEditViewModel model;
+  TransactionCreateOrEditViewModel? _model;
+  TransactionCreateOrEditViewModel get model => _model!;
 
   static String tr(String key) => ez.tr('transaction_create_or_edit_view.$key');
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    model = TransactionCreateOrEditViewModel(
+
+    if (_model != null) return;
+    _model = TransactionCreateOrEditViewModel(
       transactionsRepo: context.app.transactionsRepo,
       contactsService: context.app.contactsService,
       ledgerId: widget.ledgerId,
       transaction: widget.transaction,
       router: GoRouter.of(context),
     );
-    model.init();
+    _model!.init();
   }
 
   @override

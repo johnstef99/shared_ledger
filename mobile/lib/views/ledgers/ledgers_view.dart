@@ -16,7 +16,8 @@ class LedgersView extends StatefulWidget {
 }
 
 class _LedgersViewState extends State<LedgersView> {
-  late LedgersViewModel model;
+  LedgersViewModel? _model;
+  LedgersViewModel get model => _model!;
 
   @override
   Widget build(BuildContext context) {
@@ -91,11 +92,12 @@ class _LedgersViewState extends State<LedgersView> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    model = LedgersViewModel(
+    if (_model != null) return;
+    _model = LedgersViewModel(
       ledgerRepository: context.app.ledgerRepo,
       router: GoRouter.of(context),
     );
-    model.init();
+    _model!.init();
   }
 
   static String tr(String key) => LedgersView.tr(key);

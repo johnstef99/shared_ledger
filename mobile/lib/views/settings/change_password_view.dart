@@ -13,7 +13,9 @@ class ChangePasswordView extends StatefulWidget {
 }
 
 class _ChangePasswordViewState extends State<ChangePasswordView> {
-  late ChangePasswordViewModel model;
+  ChangePasswordViewModel? _model;
+  ChangePasswordViewModel get model => _model!;
+
   late final TextEditingController newPasswordController;
 
   @override
@@ -104,7 +106,9 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    model = ChangePasswordViewModel(authService: context.app.authService);
+
+    if (_model != null) return;
+    _model = ChangePasswordViewModel(authService: context.app.authService);
   }
 
   static String tr(String key) => ez.tr('change_password_view.$key');

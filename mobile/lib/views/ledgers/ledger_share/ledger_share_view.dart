@@ -16,14 +16,17 @@ class LedgerShareView extends StatefulWidget {
 }
 
 class _LedgerShareViewState extends State<LedgerShareView> {
-  late LedgerShareViewModel model;
+  LedgerShareViewModel? _model;
+  LedgerShareViewModel get model => _model!;
 
   static String tr(String key) => ez.tr('ledger_share_view.$key');
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    model = LedgerShareViewModel(
+
+    if (_model != null) return;
+    _model = LedgerShareViewModel(
       ledgerOrId: widget.ledgerOrId,
       ledgerRepo: context.app.ledgerRepo,
     );

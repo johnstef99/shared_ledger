@@ -14,13 +14,15 @@ class DeleteAccountView extends StatefulWidget {
 class _DeleteAccountViewState extends State<DeleteAccountView> {
   static String tr(String key) => ez.tr('delete_account_view.$key');
 
-  late DeleteAccountViewModel model;
+  DeleteAccountViewModel? _model;
+  DeleteAccountViewModel get model => _model!;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    model = DeleteAccountViewModel(
+    if (_model != null) return;
+    _model = DeleteAccountViewModel(
       authService: context.app.authService,
     );
   }
