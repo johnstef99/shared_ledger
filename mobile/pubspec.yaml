@@ -1,7 +1,7 @@
 name: shared_ledger
 description: "Track Shared Expenses with Ease"
 publish_to: "none"
-version: 1.0.3+30
+version: 1.0.4+31
 
 environment:
   sdk: ^3.5.4
