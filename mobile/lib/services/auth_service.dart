@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:pocketbase/pocketbase.dart';
+import 'package:shared_ledger/app/utils.dart';
 import 'package:shared_ledger/models/user_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   final PocketBase _pb;
+  final SharedPreferences _prefs;
 
   ValueNotifier<User> user = ValueNotifier<User>(const User.empty());
 
-  AuthService({required PocketBase pocketbase}) : _pb = pocketbase {
+  AuthService({
+    required PocketBase pocketbase,
+    required SharedPreferences prefs,
+  })  : _pb = pocketbase,
+        _prefs = prefs {
     final hasUserStored = _pb.authStore.record != null;
     final isValid = _pb.authStore.isValid;
     if (hasUserStored && isValid) {
@@ -49,9 +56,10 @@ class AuthService {
     });
   }
 
-  void logout() async {
+  Future<void> logout() async {
     _pb.authStore.clear();
     user.value = User.empty();
+    await _prefs.clearAllCache();
   }
 
   Future<OTPResponse> magicLogin(String email) async {

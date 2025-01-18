@@ -31,8 +31,8 @@ class ContactsService {
     contacts.dispose();
   }
 
-  Future<void> loadContacts() async {
-    final data = await _contactsRepository.getContacts();
+  Future<void> loadContacts({bool noCache = false}) async {
+    final data = await _contactsRepository.getContacts(noCache: noCache);
     contacts.value = data;
   }
 
@@ -53,5 +53,9 @@ class ContactsService {
 
   Future<Contact> getContact(String id) {
     return _contactsRepository.getContact(id);
+  }
+
+  Future<void> onRefresh() async {
+    await loadContacts(noCache: true);
   }
 }

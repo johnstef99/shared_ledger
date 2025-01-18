@@ -44,26 +44,29 @@ class _ContactsViewState extends State<ContactsView> {
           },
           child: Icon(Icons.person_add),
         ),
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              title: Text(tr('appbar_title')),
-            ),
-            ValueListenableBuilder(
-              valueListenable: model.isLoading,
-              builder: (context, isLoading, child) {
-                if (isLoading) {
-                  return const SliverFillRemaining(
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
-                }
-                return _List();
-              },
-            ),
-            SliverPadding(padding: EdgeInsets.only(bottom: 100)),
-          ],
+        body: RefreshIndicator(
+          onRefresh: model.onRefresh,
+          child: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                title: Text(tr('appbar_title')),
+              ),
+              ValueListenableBuilder(
+                valueListenable: model.isLoading,
+                builder: (context, isLoading, child) {
+                  if (isLoading) {
+                    return const SliverFillRemaining(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  }
+                  return _List();
+                },
+              ),
+              SliverPadding(padding: EdgeInsets.only(bottom: 100)),
+            ],
+          ),
         ),
       ),
     );

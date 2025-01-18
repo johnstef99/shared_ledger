@@ -103,7 +103,7 @@ class TransactionsViewModel {
 
   Future<void> onRefresh() async {
     transactionsListNotifier.updateTransactions(await _transactionsRepo
-        .getTransactions(ledger.id)
+        .getTransactions(ledger.id, noCache: true)
         .whenComplete(() => isLoading.value = false));
   }
 

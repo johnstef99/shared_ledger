@@ -67,7 +67,10 @@ class _MyAppState extends State<MyApp> {
       authStore: store,
     );
 
-    authService = AuthService(pocketbase: pb);
+    authService = AuthService(
+      pocketbase: pb,
+      prefs: prefs,
+    );
     ledgerRepo = LedgerRepository(
       prefs: prefs,
       pocketbase: pb,
@@ -83,6 +86,8 @@ class _MyAppState extends State<MyApp> {
       authService: authService,
     );
     transactionsRepo = TransactionsRepository(
+      authService: authService,
+      prefs: prefs,
       pocketbase: pb,
     );
     themeModeNotifier = ThemeModeNotifier(

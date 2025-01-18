@@ -31,4 +31,8 @@ class ContactsViewModel {
   void editContact(Contact contact) {
     _router.go('/contacts/${contact.id}/edit', extra: contact);
   }
+
+  Future<void> onRefresh() async {
+    await _contactsService.onRefresh();
+  }
 }

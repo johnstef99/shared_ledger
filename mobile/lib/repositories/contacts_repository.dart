@@ -38,8 +38,9 @@ class ContactsRepository {
     return data;
   }
 
-  Future<List<Contact>> getContacts() async {
+  Future<List<Contact>> getContacts({bool noCache = false}) async {
     return await _prefs.cached(
+      force: noCache,
       key: 'getContacts_${_authService.user.value.id}',
       fetch: () => _pb
           .collection('contacts')
@@ -75,8 +76,9 @@ class ContactsRepository {
         .clearCache('getContact_${_authService.user.value.id}_${contact.id}');
   }
 
-  Future<Contact> getContact(String id) async {
+  Future<Contact> getContact(String id, {bool noCache = false}) async {
     return await _prefs.cached(
+      force: noCache,
       key: 'getContact_${_authService.user.value.id}_$id',
       fetch: () => _pb
           .collection('contacts')

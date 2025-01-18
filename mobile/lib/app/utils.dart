@@ -52,11 +52,24 @@ extension SharedPreferencesCache on SharedPreferences {
     await setString(key, encode(data));
     await setInt('${key}_expires',
         DateTime.now().add(expiresIn!).millisecondsSinceEpoch);
+    final cache = getStringList('cache') ?? [];
+    await setStringList('cache', [...cache, key]);
     return data;
   }
 
   Future<void> clearCache(String key) async {
     await remove(key);
     await remove('${key}_expires');
+    final cache = getStringList('cache') ?? [];
+    await setStringList('cache', cache..remove(key));
+  }
+
+  Future<void> clearAllCache() async {
+    final cache = getStringList('cache') ?? [];
+    for (final key in cache) {
+      await remove(key);
+      await remove('${key}_expires');
+    }
+    await remove('cache');
   }
 }
