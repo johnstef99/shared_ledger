@@ -36,11 +36,11 @@ class LedgersViewModel {
     isLoading.dispose();
   }
 
-  Future<void> getLedgers() async {
-    await _ledgerRepo.getLedgers().then((data) {
+  Future<void> getLedgers({bool noCache = false}) async {
+    await _ledgerRepo.getLedgers(noCache: noCache).then((data) {
       userLedgers.value = data;
     });
-    await _ledgerRepo.getSharedWithMeLedgers().then((data) {
+    await _ledgerRepo.getSharedWithMeLedgers(noCache: noCache).then((data) {
       sharedLedgers.value = data;
     });
   }
@@ -53,7 +53,7 @@ class LedgersViewModel {
   }
 
   Future<void> onRefresh() async {
-    await getLedgers();
+    await getLedgers(noCache: true);
   }
 
   Future<void> deleteLedgerTapped(Ledger ledger, int listIndex) async {
@@ -79,7 +79,7 @@ class LedgersViewModel {
     final updated =
         await _router.push('/ledgers/${ledger.id}/edit', extra: ledger);
     if (updated is! Ledger) return;
-    await _ledgerRepo.getLedgers().then((data) {
+    await _ledgerRepo.getLedgers(noCache: true).then((data) {
       userLedgers.value = data;
     });
   }

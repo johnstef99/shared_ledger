@@ -6,7 +6,6 @@ part 'ledger_model.g.dart';
 
 @freezed
 class Ledger with _$Ledger {
-
   const factory Ledger({
     required String id,
     required String name,

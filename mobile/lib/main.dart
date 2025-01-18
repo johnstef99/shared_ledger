@@ -69,6 +69,7 @@ class _MyAppState extends State<MyApp> {
 
     authService = AuthService(pocketbase: pb);
     ledgerRepo = LedgerRepository(
+      prefs: prefs,
       pocketbase: pb,
       authService: authService,
     );
