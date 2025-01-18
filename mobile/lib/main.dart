@@ -74,6 +74,7 @@ class _MyAppState extends State<MyApp> {
       authService: authService,
     );
     contactsRepo = ContactsRepository(
+      prefs: prefs,
       pocketbase: pb,
       authService: authService,
     );
