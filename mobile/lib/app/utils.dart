@@ -54,4 +54,9 @@ extension SharedPreferencesCache on SharedPreferences {
         DateTime.now().add(expiresIn!).millisecondsSinceEpoch);
     return data;
   }
+
+  Future<void> clearCache(String key) async {
+    await remove(key);
+    await remove('${key}_expires');
+  }
 }

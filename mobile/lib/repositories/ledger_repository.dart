@@ -26,12 +26,13 @@ class LedgerRepository {
       'description': description.orNull,
       'user_id': _authService.user.value.id,
     }).then((rec) => LedgerEntity.fromJson(rec.toJson()));
+    await _prefs.clearCache('getLedgers_${_authService.user.value.id}');
 
     return Ledger.fromEntity(data, _authService.user.value.id);
   }
 
   Future<Ledger> updateLedger(Ledger ledger) async {
-    return await _pb
+    final data = await _pb
         .collection('ledgers')
         .update(ledger.id, body: {
           'name': ledger.name,
@@ -39,6 +40,10 @@ class LedgerRepository {
         })
         .then((rec) => LedgerEntity.fromJson(rec.toJson()))
         .then((data) => Ledger.fromEntity(data, _authService.user.value.id));
+    await _prefs.clearCache('getLedgers_${_authService.user.value.id}');
+    await _prefs
+        .clearCache('getLedger_${_authService.user.value.id}_${ledger.id}');
+    return data;
   }
 
   Future<List<Ledger>> getLedgers({bool noCache = false}) async {
@@ -64,6 +69,9 @@ class LedgerRepository {
 
   Future<void> deleteLedger(Ledger ledger) async {
     await _pb.collection('ledgers').delete(ledger.id);
+    await _prefs.clearCache('getLedgers_${_authService.user.value.id}');
+    await _prefs
+        .clearCache('getLedger_${_authService.user.value.id}_${ledger.id}');
   }
 
   Future<List<Ledger>> getSharedWithMeLedgers({bool noCache = false}) async {
